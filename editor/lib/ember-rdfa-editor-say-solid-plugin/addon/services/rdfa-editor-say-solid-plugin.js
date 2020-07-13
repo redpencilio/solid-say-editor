@@ -48,6 +48,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
           // any content you need to render the component and handle its actions
           info: {
             hrId, hintsRegistry, editor,
+            term,
             location: absoluteLocation,
           }
         });
