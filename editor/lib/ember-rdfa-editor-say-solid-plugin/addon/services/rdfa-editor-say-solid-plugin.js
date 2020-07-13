@@ -26,18 +26,21 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-    console.log(hrId);
+    console.log("hrid");
     console.log("tes");
     const hints = [];
 
     for( const rdfaBlock of rdfaBlocks ){
+      console.log(rdfaBlock);
       hintsRegistry.removeHintsInRegion(rdfaBlock.region, hrId, "say-solid-scope");
 
-      let idx = rdfaBlock.text.toLowerCase().indexOf('hello');
-      if( idx !== -1 ) {
-        // the hintsregistry needs to know the location with respect to the document
-        const absoluteLocation = normalizeLocation( [idx, idx + 'hello'.length], rdfaBlock.region );
+      const match = rdfaBlock.text.match(/dbp:([\w_\-(%\d\d).]+\w)/);
+      if( match ) {
+        const { 0: fullMatch, 1: term, index: start } = match;
 
+        const absoluteLocation = normalizeLocation( [ start, start + fullMatch.length ], rdfaBlock.region );
+      
+        
         hints.push( {
           // info for the hintsRegistry
           location: absoluteLocation,
@@ -45,6 +48,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
           // any content you need to render the component and handle its actions
           info: {
             hrId, hintsRegistry, editor,
+            term,
             location: absoluteLocation,
           }
         });
