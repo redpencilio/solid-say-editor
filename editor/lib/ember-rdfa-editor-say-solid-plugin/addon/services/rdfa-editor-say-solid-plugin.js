@@ -34,7 +34,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
       console.log(rdfaBlock);
       hintsRegistry.removeHintsInRegion(rdfaBlock.region, hrId, "say-solid-scope");
 
-      const match = rdfaBlock.text.match(/dbp:([\w_\-(%\d\d).]+\w)/);
+      const match = rdfaBlock.text.match(/solid:me/);
       if( match ) {
         const { 0: fullMatch, 1: term, index: start } = match;
 
