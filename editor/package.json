@@ -67,7 +67,6 @@
   },
   "ember-addon": {
     "paths": [
-      "lib/ember-rdfa-editor-solid-plugin"
     ]
   }
 }

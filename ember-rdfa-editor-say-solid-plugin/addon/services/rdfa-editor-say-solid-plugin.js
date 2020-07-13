@@ -26,6 +26,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
+    console.log("execute");
     const hints = [];
 
     for( const rdfaBlock of rdfaBlocks ){
