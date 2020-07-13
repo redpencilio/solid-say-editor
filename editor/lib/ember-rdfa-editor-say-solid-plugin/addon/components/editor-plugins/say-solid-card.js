@@ -25,7 +25,8 @@ export default class SaySolidCard extends Component {
     const fetcher = new Fetcher(graph);
     await fetcher.load(me);
 
-    return this.auth.webId;
+    return this.store.create('solid/person', me, { defaultGraph: me.doc() } );
+
   }
 
   @action
@@ -37,7 +38,7 @@ export default class SaySolidCard extends Component {
     const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
     const selection = info.editor.selectHighlight( mappedLocation );
     info.editor.update( selection, {
-      set: { innerHTML: `<a>${me}</a>` }
+      set: { innerHTML: `<a>${me.name}</a>` }
     });
   }
 }
