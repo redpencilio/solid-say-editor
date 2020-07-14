@@ -26,32 +26,36 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-    console.log("hrid");
-    console.log("tes");
     const hints = [];
 
     for( const rdfaBlock of rdfaBlocks ){
       console.log(rdfaBlock);
       hintsRegistry.removeHintsInRegion(rdfaBlock.region, hrId, "say-solid-scope");
 
-      const match = rdfaBlock.text.match(/solid:me/);
+      const match = rdfaBlock.text.match(/solid:([a-z]+)/);
       if( match ) {
         const { 0: fullMatch, 1: term, index: start } = match;
 
         const absoluteLocation = normalizeLocation( [ start, start + fullMatch.length ], rdfaBlock.region );
-      
-        
-        hints.push( {
-          // info for the hintsRegistry
-          location: absoluteLocation,
-          card: "editor-plugins/say-solid-card",
-          // any content you need to render the component and handle its actions
-          info: {
-            hrId, hintsRegistry, editor,
-            term,
+        let card;
+        if(term === "me"){
+          card = "editor-plugins/say-solid-fetch-card";
+        } else if(term === "login"){
+          card = "editor-plugins/say-solid-login-card";
+        }
+        if(card){
+          hints.push( {
+            // info for the hintsRegistry
             location: absoluteLocation,
-          }
-        });
+            card: card,
+            // any content you need to render the component and handle its actions
+            info: {
+              hrId, hintsRegistry, editor,
+              term,
+              location: absoluteLocation,
+            }
+          });
+        }
       }
     }
     

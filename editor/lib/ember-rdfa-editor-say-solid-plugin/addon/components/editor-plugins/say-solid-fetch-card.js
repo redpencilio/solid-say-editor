@@ -13,7 +13,7 @@ const { Fetcher, namedNode } = rdflib;
  * @class SaySolidCard
  * @extends Ember.Component
  */
-export default class SaySolidCard extends Component {
+export default class SaySolidFetchCard extends Component {
   @service  auth;
   @service("rdf-store") store;
 
