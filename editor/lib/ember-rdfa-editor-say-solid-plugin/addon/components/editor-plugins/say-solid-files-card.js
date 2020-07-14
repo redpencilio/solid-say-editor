@@ -18,6 +18,7 @@ const { Fetcher, namedNode } = rdflib;
 export default class SaySolidFilesCard extends Component {
   @service  auth;
   @service("rdf-store") store;
+  @service profile;
   @tracked files = [];
 
   constructor(){
@@ -29,11 +30,10 @@ export default class SaySolidFilesCard extends Component {
 
   async getFiles(){
     const graph = this.store.store.graph;
-    const me = graph.sym(this.auth.webId);
-    const fetcher = new Fetcher(graph);
-    await fetcher.load(me);
-    const person = this.store.create('solid/person', me, { defaultGraph: me.doc() } );
-    await fetcher.load(person.storage);
+    if(this.profile.me === null){
+        this.profile.fetchProfileInfo();
+    }
+    await fetcher.load(this.profile.me.storage);
     let files = this.store.match(person.storage, LDP('contains'));
     console.log(files);
     this.files = files;
