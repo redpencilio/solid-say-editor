@@ -5,14 +5,15 @@ import { tracked } from '@glimmer/tracking';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
 import { VCARD, FOAF, LDP, SP, SOLID } from 'solid-addon/utils/namespaces';
-
+import Folder from '../../utils/file-managing/folder';
+import File from '../../utils/file-managing/file';
 const { Fetcher, namedNode } = rdflib;
 
 /**
- * Card displaying a hint of the Date plugin
+ * Card displaying a tree of files in the Solid Pod
  *
  * @module editor-say-solid-plugin
- * @class SaySolidCard
+ * @class SaySolidFilesCard
  * @extends Ember.Component
  */
 export default class SaySolidFilesCard extends Component {
@@ -24,26 +25,46 @@ export default class SaySolidFilesCard extends Component {
   constructor(){
       super(...arguments);
       if(this.auth.webId){
-          this.getFiles();
+          this.fetchFiles();
       }
   }
 
-  async getFiles(){
+  async fetchFiles(){
     const graph = this.store.store.graph;
     if(this.profile.me === null){
-        this.profile.fetchProfileInfo();
+        await this.profile.fetchProfileInfo();
     }
-    await fetcher.load(this.profile.me.storage);
-    let files = this.store.match(person.storage, LDP('contains'));
-    console.log(files);
-    this.files = files;
+    const fetcher = new Fetcher(graph);
+    this.files = await this.getFiles(this.profile.me.storage, fetcher);
+    console.log(this.files);
+  }
+
+  async getFiles(folder, fetcher){
+    let result = [];
+    console.log(folder);
+    await fetcher.load(folder);
+    let files = this.store.match(folder, LDP('contains'));
+    if(files === undefined){
+        return [];
+    }
+    files.forEach(async (file) => {
+        let children = await this.getFiles(file.object, fetcher);
+        if (children !== []){
+            let folderObj = new Folder(file.object.value, children);
+            result.push(folderObj);
+        } else {
+            let fileObj = new File(file.object.value);
+            result.push(fileObj);
+        }
+    })
+    return result;
   }
 
   @action
   async login() {
     await this.auth.ensureLogin();
     await this.auth.ensureTypeIndex();
-    await this.getFiles();
+    await this.fetchFiles();
   }
 
   @action
