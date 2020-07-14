@@ -1,5 +1,4 @@
 import Service from '@ember/service';
-import normalizeLocation from '../utils/normalize-location';
 import BlockHandler from  "../utils/block-handlers/block-handler"; 
 import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
 import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
@@ -39,9 +38,9 @@ export default class RdfaEditorSaySolidPlugin extends Service {
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
 
     for( const rdfaBlock of rdfaBlocks ){
-        
       for( const handler of this.solidHandlers){
         handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 
+
       }
       
     }

@@ -21,7 +21,8 @@ class EditBlockHandler extends SolidHandler {
 
 
     handle(hrid, block, hintsRegistry, editor){
-
+        
+        
         
     }
 
