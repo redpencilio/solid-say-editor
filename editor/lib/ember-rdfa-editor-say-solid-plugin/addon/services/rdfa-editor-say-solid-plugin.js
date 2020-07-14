@@ -1,5 +1,4 @@
 import Service from '@ember/service';
-import normalizeLocation from '../utils/normalize-location';
 import BlockHandler from  "../utils/block-handlers/block-handler"; 
 import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
 import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
