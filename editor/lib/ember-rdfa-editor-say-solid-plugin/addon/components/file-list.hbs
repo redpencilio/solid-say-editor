@@ -1,10 +1,10 @@
-<ul>
+<ul ...attributes>
     {{#each @files as |file|}}
 
     {{#if file.children}}
     <li class="folder">
         {{file.name}}
-        <FileList @files={{file.children}}/>
+        <FileList @files={{file.children}} class="hidden"/>
     </li>
     {{else}}
     <li>
