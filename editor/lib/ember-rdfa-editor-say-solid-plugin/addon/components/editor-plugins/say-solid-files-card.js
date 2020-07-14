@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
 import { VCARD, FOAF, LDP, SP, SOLID } from 'solid-addon/utils/namespaces';
+import FilesBlockHandler from '../../utils/block-handlers/files-block-handler';
 
 const { Fetcher, namedNode } = rdflib;
 
@@ -48,12 +49,6 @@ export default class SaySolidFilesCard extends Component {
 
   @action
   async close(){
-    const info = this.args.info;
-    info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
-    const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
-    const selection = info.editor.selectHighlight( mappedLocation );
-    info.editor.update( selection, {
-      set: { innerHTML: '' }
-    });
+    FilesBlockHandler.handleClose(this.args.info, '');
   }
 }
