@@ -42,6 +42,8 @@ export default class RdfaEditorSaySolidPlugin extends Service {
           card = "editor-plugins/say-solid-fetch-card";
         } else if(term === "login"){
           card = "editor-plugins/say-solid-login-card";
+        } else if(term === "files"){
+          card = "editor-plugins/say-solid-files-card";
         }
         if(card){
           hints.push( {
