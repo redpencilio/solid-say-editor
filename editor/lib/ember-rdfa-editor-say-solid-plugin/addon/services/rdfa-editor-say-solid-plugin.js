@@ -38,9 +38,9 @@ export default class RdfaEditorSaySolidPlugin extends Service {
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
 
     for( const rdfaBlock of rdfaBlocks ){
-        
       for( const handler of this.solidHandlers){
         handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 
+
       }
       
     }
