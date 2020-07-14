@@ -3,6 +3,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
+import LoginBlockHandler from '../../utils/block-handlers/login-block-handler';
 
 const { Fetcher, namedNode } = rdflib;
 
@@ -25,12 +26,13 @@ export default class SaySolidLoginCard extends Component {
 
   @action
   async close(){
-    const info = this.args.info;
-    info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
-    const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
-    const selection = info.editor.selectHighlight( mappedLocation );
-    info.editor.update( selection, {
-      set: { innerHTML: '' }
-    });
+    LoginBlockHandler.handleClose(this.args.info, '');
+    // const info = this.args.info;
+    // info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
+    // const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
+    // const selection = info.editor.selectHighlight( mappedLocation );
+    // info.editor.update( selection, {
+    //   set: { innerHTML: '' }
+    // });
   }
 }
