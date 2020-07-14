@@ -10,6 +10,12 @@ import normalizeLocation from '../utils/normalize-location';
  * @extends EmberService
  */
 export default class RdfaEditorSaySolidPlugin extends Service {
+  
+
+  termCardTable = {
+    "me": "editor-plugins/say-solid-fetch-card", 
+    "login": "editor-plugins/say-solid-login-card"
+  }
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
@@ -37,12 +43,8 @@ export default class RdfaEditorSaySolidPlugin extends Service {
         const { 0: fullMatch, 1: term, index: start } = match;
 
         const absoluteLocation = normalizeLocation( [ start, start + fullMatch.length ], rdfaBlock.region );
-        let card;
-        if(term === "me"){
-          card = "editor-plugins/say-solid-fetch-card";
-        } else if(term === "login"){
-          card = "editor-plugins/say-solid-login-card";
-        }
+        let card = this.termCardTable[term]; 
+        
         if(card){
           hints.push( {
             // info for the hintsRegistry
