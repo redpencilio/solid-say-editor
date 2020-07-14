@@ -9,14 +9,7 @@
     {{#if this.isLoading}}
     <p>Loading...</p>
     {{else}}
-    <ul>
-        {{#each this.files as |file|}}
-        <li>
-            {{file.name}}
-            
-        </li>
-        {{/each}}
-    </ul>
+    <FileList @files={{this.files}}/>
     {{/if}}
 
 </div>

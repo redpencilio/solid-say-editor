@@ -1,0 +1,16 @@
+<ul>
+    {{#each @files as |file|}}
+
+    {{#if file.children}}
+    <li class="folder">
+        {{file.name}}
+        <FileList @files={{file.children}}/>
+    </li>
+    {{else}}
+    <li>
+        {{file.name}}
+    </li>
+    {{/if}}
+
+    {{/each}}
+</ul>
