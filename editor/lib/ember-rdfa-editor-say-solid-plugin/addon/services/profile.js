@@ -16,9 +16,7 @@ export default class ProfileService extends Service {
         const me = graph.sym(this.auth.webId);
         const fetcher = new Fetcher(graph);
         await fetcher.load(me);
-        this.me = this.store.create('solid/person', me, { defaultGraph: me.doc() } );
-        console.log("Profile:"); 
-        console.log(this.me); 
+        this.me = this.store.create('solid/person', me, { defaultGraph: me.doc() } ); 
     }
 
     async sendProfileInfo(){
