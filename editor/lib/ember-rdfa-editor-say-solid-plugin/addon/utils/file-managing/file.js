@@ -1,8 +1,16 @@
+import { tracked } from '@glimmer/tracking';
+
 export default class File {
-    path = "";
+    @tracked path = "";
+    
+    get type(){
+        return "file";
+    }
 
     get name(){
-        return "name";
+        let patharr = this.path.split("/");
+        
+        return  patharr[patharr.length - 1] || patharr[patharr.length - 2];
     }
     constructor(path){
         this.path = path;

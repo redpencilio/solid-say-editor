@@ -17,64 +17,69 @@ const { Fetcher, namedNode } = rdflib;
  * @extends Ember.Component
  */
 export default class SaySolidFilesCard extends Component {
-  @service  auth;
-  @service("rdf-store") store;
-  @service profile;
-  @tracked files = [];
+    @service auth;
+    @service("rdf-store") store;
+    @service profile;
 
-  constructor(){
-      super(...arguments);
-      if(this.auth.webId){
-          this.fetchFiles();
-      }
-  }
+    @tracked files;
 
-  async fetchFiles(){
-    const graph = this.store.store.graph;
-    if(this.profile.me === null){
-        await this.profile.fetchProfileInfo();
-    }
-    const fetcher = new Fetcher(graph);
-    this.files = await this.getFiles(this.profile.me.storage, fetcher);
-    console.log(this.files);
-  }
+    @tracked isLoading = false;
 
-  async getFiles(folder, fetcher){
-    let result = [];
-    console.log(folder);
-    await fetcher.load(folder);
-    let files = this.store.match(folder, LDP('contains'));
-    if(files === undefined){
-        return [];
-    }
-    files.forEach(async (file) => {
-        let children = await this.getFiles(file.object, fetcher);
-        if (children !== []){
-            let folderObj = new Folder(file.object.value, children);
-            result.push(folderObj);
-        } else {
-            let fileObj = new File(file.object.value);
-            result.push(fileObj);
+    constructor() {
+        super(...arguments);
+        if (this.auth.webId) {
+            this.fetchFiles();
         }
-    })
-    return result;
-  }
+    }
 
-  @action
-  async login() {
-    await this.auth.ensureLogin();
-    await this.auth.ensureTypeIndex();
-    await this.fetchFiles();
-  }
+    @action
+    async fetchFiles() {
+        this.isLoading = true;
+        const graph = this.store.store.graph;
+        if (this.profile.me === null) {
+            await this.profile.fetchProfileInfo();
+        }
+        const fetcher = new Fetcher(graph);
+        this.files = await this.getFiles(this.profile.me.storage, fetcher);
+        this.isLoading = false;
+    }
 
-  @action
-  async close(){
-    const info = this.args.info;
-    info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
-    const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
-    const selection = info.editor.selectHighlight( mappedLocation );
-    info.editor.update( selection, {
-      set: { innerHTML: '' }
-    });
-  }
+    async getFiles(folder, fetcher) {
+        let result = [];
+        await fetcher.load(folder);
+        let files = this.store.match(folder, LDP('contains'));
+        if (files === undefined) {
+            return [];
+        }
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let children = await this.getFiles(file.object, fetcher);
+            if (children.length > 0) {
+                let folderObj = new Folder(file.object.value, children);
+                result.push(folderObj);
+            } else {
+                let fileObj = new File(file.object.value);
+                result.push(fileObj);
+            }
+        }
+        return result;
+    }
+
+    @action
+    async login() {
+        await this.auth.ensureLogin();
+        await this.auth.ensureTypeIndex();
+        await this.fetchFiles();
+    }
+
+    @action
+    async close() {
+        const info = this.args.info;
+        info.hintsRegistry.removeHintsAtLocation(info.location, info.hrId, "say-solid-scope");
+        const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
+        const selection = info.editor.selectHighlight(mappedLocation);
+        info.editor.update(selection, {
+            set: { innerHTML: '' }
+        });
+    }
 }

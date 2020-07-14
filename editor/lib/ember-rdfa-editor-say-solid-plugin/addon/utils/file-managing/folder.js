@@ -1,7 +1,12 @@
 import File from './file';
+import { tracked } from '@glimmer/tracking';
 
 export default class Folder extends File {
-    children = [];
+    @tracked children = [];
+    
+    get type(){
+        return "folder";
+    }
 
     constructor(path, children){
         super(path);
