@@ -18,20 +18,15 @@ export default class SaySolidFetchCard extends Component {
   @service("rdf-store") store;
 
   async getProfileInfo(){
-    await this.auth.ensureLogin();
-    await this.auth.ensureTypeIndex();
     const graph = this.store.store.graph;
     const me = graph.sym(this.auth.webId);
     const fetcher = new Fetcher(graph);
     await fetcher.load(me);
-
     return this.store.create('solid/person', me, { defaultGraph: me.doc() } );
-
   }
 
   @action
   async insert() {
-    
     const me = await this.getProfileInfo();
     const info = this.args.info;
     info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
@@ -40,5 +35,11 @@ export default class SaySolidFetchCard extends Component {
     info.editor.update( selection, {
       set: { innerHTML: `<a href=${this.auth.webId} property="foaf:name">${me.name}</a>` }
     });
+  }
+
+  @action
+  async login(){
+    await this.auth.ensureLogin();
+    await this.auth.ensureTypeIndex();
   }
 }

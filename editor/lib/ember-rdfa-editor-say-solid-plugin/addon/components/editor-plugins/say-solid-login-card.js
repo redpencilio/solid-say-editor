@@ -18,9 +18,13 @@ export default class SaySolidLoginCard extends Component {
 
 
   @action
-  async insert() {
+  async login() {
     await this.auth.ensureLogin();
     await this.auth.ensureTypeIndex();
+  }
+
+  @action
+  async close(){
     const info = this.args.info;
     info.hintsRegistry.removeHintsAtLocation( info.location, info.hrId, "say-solid-scope");
     const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);

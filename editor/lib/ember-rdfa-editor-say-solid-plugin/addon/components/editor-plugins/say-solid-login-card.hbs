@@ -1,12 +1,19 @@
 <div class="modal-dialog__content">
-  <p class="u-spacer--tiny">
-      Login with Solid.
-    <br>
-    <strong>Login with Solid.</strong>
-  </p>
+    <p class="u-spacer--tiny">
+        {{#if this.auth.webId}}
+        <strong>You are logged in.</strong>
+        Your webID is: {{this.auth.webId}}
+        {{else}}
+        <strong>Login with Solid.</strong>
+        {{/if}}
+    </p>
 </div>
 <div class="modal-dialog__footer">
-  <WuButtonGroup>
-    <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
-  </WuButtonGroup>
+    <WuButtonGroup>
+        {{#if this.auth.webId}}
+        <WuButton @label="Close card" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
+        {{else}}
+        <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
+        {{/if}}
+    </WuButtonGroup>
 </div>
