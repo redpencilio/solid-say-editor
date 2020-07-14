@@ -1,7 +1,7 @@
 import SolidBlockHandler from "./block-handler";
 
 
-export default class LoginBlockHandler extends SolidBlockHandler {
+class LoginBlockHandler extends SolidBlockHandler {
 
     get scope(){
         return this.card; 
@@ -16,3 +16,7 @@ export default class LoginBlockHandler extends SolidBlockHandler {
     }
 
 }
+
+const single = new LoginBlockHandler(); 
+
+export default  single ;

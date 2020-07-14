@@ -1,5 +1,10 @@
 import Service from '@ember/service';
 import normalizeLocation from '../utils/normalize-location';
+import BlockHandler from  "../utils/block-handlers/block-handler"; 
+import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
+import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
+
+
 
 /**
  * Entry point for SaySolid
@@ -12,10 +17,10 @@ import normalizeLocation from '../utils/normalize-location';
 export default class RdfaEditorSaySolidPlugin extends Service {
   
 
-  termCardTable = {
-    "me": "editor-plugins/say-solid-fetch-card", 
-    "login": "editor-plugins/say-solid-login-card"
-  }
+  /**
+   * @type {BlockHandler[]}
+   */
+  solidHandlers = [FetchBlockHandler, LoginBlockHandler]
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
@@ -32,35 +37,14 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-    const hints = [];
 
     for( const rdfaBlock of rdfaBlocks ){
-      console.log(rdfaBlock);
-      hintsRegistry.removeHintsInRegion(rdfaBlock.region, hrId, "say-solid-scope");
-
-      const match = rdfaBlock.text.match(/solid:([a-z]+)/);
-      if( match ) {
-        const { 0: fullMatch, 1: term, index: start } = match;
-
-        const absoluteLocation = normalizeLocation( [ start, start + fullMatch.length ], rdfaBlock.region );
-        let card = this.termCardTable[term]; 
         
-        if(card){
-          hints.push( {
-            // info for the hintsRegistry
-            location: absoluteLocation,
-            card: card,
-            // any content you need to render the component and handle its actions
-            info: {
-              hrId, hintsRegistry, editor,
-              term,
-              location: absoluteLocation,
-            }
-          });
-        }
+      for( const handler of this.solidHandlers){
+        handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 
       }
+      
     }
     
-    hintsRegistry.addHints(hrId, "say-solid-scope", hints);
   }
 }

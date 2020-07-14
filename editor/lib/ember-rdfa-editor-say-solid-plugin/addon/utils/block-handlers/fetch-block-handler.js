@@ -1,18 +1,21 @@
 import SolidBlockHandler from "./block-handler";
 
 
-export default class FetchBlockHandler extends SolidBlockHandler {
+class FetchBlockHandler extends SolidBlockHandler {
 
-    get scope(){
-        return this.card; 
+    get scope() {
+        return this.card;
     }
 
-    isValidBlock(term){
-        return term === "me"; 
+    isValidBlock(term) {
+        return term === "me";
     }
-    get card(){
+    get card() {
 
         return "editor-plugins/say-solid-fetch-card";
     }
 
 }
+
+const single = new FetchBlockHandler();
+export default single; 
