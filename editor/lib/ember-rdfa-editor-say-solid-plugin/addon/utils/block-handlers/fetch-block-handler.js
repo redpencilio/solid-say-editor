@@ -17,5 +17,5 @@ class FetchBlockHandler extends SolidBlockHandler {
 
 }
 
-const single = new FetchBlockHandler();
+const single = FetchBlockHandler.create();
 export default single; 

@@ -17,6 +17,6 @@ class LoginBlockHandler extends SolidBlockHandler {
 
 }
 
-const single = new LoginBlockHandler(); 
+const single = LoginBlockHandler.create(); 
 
 export default  single ;

@@ -17,6 +17,6 @@ class FilesBlockHandler extends SolidBlockHandler {
 
 }
 
-const single = new FilesBlockHandler(); 
+const single = FilesBlockHandler.create(); 
 
 export default  single ;

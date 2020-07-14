@@ -1,6 +1,7 @@
 import normalizeLocation from "../../utils/normalize-location";
+import EmberObject from '@ember/object';
 
-export default class SolidBlockHandler {
+export default class SolidBlockHandler extends EmberObject{
 
     get regex() {
         return /solid:([a-z]+)/;

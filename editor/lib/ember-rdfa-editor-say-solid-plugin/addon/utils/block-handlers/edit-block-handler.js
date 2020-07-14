@@ -2,8 +2,12 @@ import SolidHandler from "./block-handler";
 import { inject as service } from '@ember/service';
 import normalizeLocation from "../../utils/normalize-location";
 
+const EDIT_KEY = "say-solid:edit-block-handler"; 
 
-class EditBlockHandler extends SolidHandler {
+export {EDIT_KEY}; 
+
+
+export default class EditBlockHandler extends SolidHandler {
 
     @service auth; 
     
@@ -59,7 +63,3 @@ class EditBlockHandler extends SolidHandler {
 
 
 }
-
-const single = new EditBlockHandler(); 
-
-export default single; 
