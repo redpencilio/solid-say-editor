@@ -1,0 +1,18 @@
+<div class="modal-dialog__content">
+  <p class="u-spacer--tiny">
+    {{#if this.auth.webId}}
+    <strong>Do you want to insert your profile card?</strong>
+    {{else}}
+    <strong>You are not logged in</strong>
+    {{/if}}
+  </p>
+</div>
+<div class="modal-dialog__footer">
+  <WuButtonGroup>
+    {{#if this.auth.webId}}
+    <WuButton @label="Yes" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />*
+    {{else}}
+    <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />*
+    {{/if}}
+  </WuButtonGroup>
+</div>
