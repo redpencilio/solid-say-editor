@@ -38,7 +38,7 @@ export default class SaySolidCard extends Component {
     const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
     const selection = info.editor.selectHighlight( mappedLocation );
     info.editor.update( selection, {
-      set: { innerHTML: `<a>${me.name}</a>` }
+      set: { innerHTML: `<a href=${this.auth.webId}>${me.name}</a>` }
     });
   }
 }
