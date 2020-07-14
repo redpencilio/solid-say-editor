@@ -1,31 +1,23 @@
 import SolidHandler from "./block-handler"; 
+import { inject as service } from '@ember/service';
 
 
 class EditBlockHandler extends SolidHandler {
+
+    @service profile; 
+
 
     get scope(){
         return "editor-plugins/say-solid-edit-card";
     }
 
     isValidBlock(term){
-        throw "Not Applicable"; 
-    }
-
-    get regex(){
-        throw "Not Applicable"; 
+        return term === "me"; 
     }
 
     get card(){
         return this.scope; 
     }
-
-
-    handle(hrid, block, hintsRegistry, editor){
-        
-        
-        
-    }
-
 
 
 

@@ -3,7 +3,7 @@ import BlockHandler from  "../utils/block-handlers/block-handler";
 import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
 import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
 import FilesBlockHandler from "../utils/block-handlers/files-block-handler"
-
+import EditBlockHandler from "../utils/block-handlers/edit-block-handler"; 
 
 
 /**
@@ -20,7 +20,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
   /**
    * @type {BlockHandler[]}
    */
-  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler]
+  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, EditBlockHandler];
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.

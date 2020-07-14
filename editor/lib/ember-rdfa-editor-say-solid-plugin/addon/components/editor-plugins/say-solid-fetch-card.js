@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
 import FetchBlockHandler from '../../utils/block-handlers/fetch-block-handler';
-
+import {RDF} from 'solid-addon/utils/namespaces';
 
 const { Fetcher, namedNode } = rdflib;
 
@@ -23,7 +23,10 @@ export default class SaySolidFetchCard extends Component {
   @action
   async insert() {
     await this.profile.fetchProfileInfo();
-    FetchBlockHandler.handleClose(this.args.info, `<a href=${this.auth.webId} property="foaf:name">${this.profile.me.name}</a>`)
+    FetchBlockHandler.handleClose(this.args.info, 
+      `<span about=${this.auth.webId}> 
+              <a href=${this.auth.webId} property="foaf:name" content="${this.profile.me.name}" >${this.profile.me.name}</a>
+              </span>`)
   }
 
   @action

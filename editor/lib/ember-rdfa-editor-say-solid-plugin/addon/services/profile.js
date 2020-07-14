@@ -17,6 +17,8 @@ export default class ProfileService extends Service {
         const fetcher = new Fetcher(graph);
         await fetcher.load(me);
         this.me = this.store.create('solid/person', me, { defaultGraph: me.doc() } );
+        console.log("Profile:"); 
+        console.log(this.me); 
     }
 
     async sendProfileInfo(){
