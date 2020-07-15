@@ -1,12 +1,12 @@
 import { action } from '@ember/object';
-import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import rdflib from 'ember-rdflib';
-import SolidPersonModel from '../../models/solid/person';
-import { VCARD, FOAF, LDP, SP, SOLID } from 'solid-addon/utils/namespaces';
-import Folder from '../../utils/file-managing/folder';
+import { LDP } from 'solid-addon/utils/namespaces';
 import File from '../../utils/file-managing/file';
+import Folder from '../../utils/file-managing/folder';
+
 const { Fetcher, namedNode } = rdflib;
 
 /**

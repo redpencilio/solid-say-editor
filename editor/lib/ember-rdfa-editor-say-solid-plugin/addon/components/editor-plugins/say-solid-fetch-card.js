@@ -3,6 +3,8 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
+import FetchBlockHandler from '../../utils/block-handlers/fetch-block-handler';
+
 
 const { Fetcher, namedNode } = rdflib;
 
