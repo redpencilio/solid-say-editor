@@ -3,7 +3,7 @@
     {{#if this.auth.webId}}
         {{#if this.isEditMode}}
             <div>
-                <form {{on "submit" this.saveUser}}>
+                {{!-- <form> --}}
                     <label for="name">name</label>
                     <Input id="name" @value={{this.profile.me.name}}/>
                     <br>
@@ -28,8 +28,8 @@
                     <label for="publicTypeIndex">publicTypeIndex</label>
                     <Input id="publicTypeIndex" @value={{this.profile.me.publicTypeIndex}}/>
                     <br>
-                    <WuButton @label="Update Profile" @size="small" @isNarrow={{true}} type="submit"/>
-                </form>
+                    <WuButton @label="Update Profile" @size="small" @isNarrow={{true}} @onClick={{this.saveUser}}/>
+                {{!-- </form> --}}
             </div>
 
         {{else}}

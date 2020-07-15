@@ -66,3 +66,4 @@ export default class EditBlockHandler extends SolidHandler {
 
 
 }
+

@@ -4,23 +4,37 @@ import { inject as service } from '@ember/service';
 import rdflib from 'ember-rdflib';
 import SolidPersonModel from '../../models/solid/person';
 import { tracked } from '@glimmer/tracking';
-
+import EditBlockHandler, { EDIT_KEY } from "../../utils/block-handlers/edit-block-handler";
 const { Fetcher, namedNode } = rdflib;
 
 export default class EditorPluginsSaySolidEditCardComponent extends Component {
   @service profile;
-  @service auth; 
+  @service auth;
+  @service("rdf-store") store;
 
-
-  @tracked isEditMode = false; 
+  @tracked isEditMode = false;
 
   @action
-  toggleEdit(){
-    this.isEditMode = ! this.isEditMode;
+  toggleEdit() {
+    this.isEditMode = !this.isEditMode;
   }
 
   @action
-  saveUser(){
-    console.log("Save!");
+  async saveUser() {
+    // this.owner.lookup(EDIT_KEY).handleClose(this.args.info, 
+    //   `<span about=${this.auth.webId} typeof="foaf:Person"> 
+    //           <a href=${this.auth.webId} property="foaf:name" content="${this.profile.me.name}" >${this.profile.me.name}</a>
+    //           </span>`);
+    let info = this.args.info;
+    let html = `<span about=${this.auth.webId} typeof="foaf:Person">
+    <a href=${this.auth.webId} property="foaf:name" content="${this.profile.me.name}" >${this.profile.me.name}</a></span>`
+    info.hintsRegistry.removeHintsAtLocation(info.location, info.hrId, "editor-plugins/say-solid-edit-card");
+    const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
+    const selection = info.editor.selectHighlight(mappedLocation);
+    info.editor.update(selection, {
+      set: { innerHTML: html }
+    });
+    this.store.persist();
+    console.log("save");
   }
 }
