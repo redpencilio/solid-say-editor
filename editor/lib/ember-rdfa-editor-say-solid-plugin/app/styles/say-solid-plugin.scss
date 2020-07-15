@@ -1,0 +1,20 @@
+.folder {
+    color: blue;
+    cursor: pointer;
+}
+
+.folder::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 15px;
+}
+
+.hidden {
+    display: none;
+}
