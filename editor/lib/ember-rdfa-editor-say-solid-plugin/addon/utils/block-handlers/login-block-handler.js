@@ -1,13 +1,13 @@
-import SolidBlockHandler from "./block-handler";
+import TextBlockHandler from "./text-block-handler";
 
 
-class LoginBlockHandler extends SolidBlockHandler {
+class LoginBlockHandler extends TextBlockHandler {
 
     get scope(){
         return this.card; 
     }
 
-    isValidBlock(term){
+    isValidTerm(term){
         return term === "login"; 
     }
     get card(){

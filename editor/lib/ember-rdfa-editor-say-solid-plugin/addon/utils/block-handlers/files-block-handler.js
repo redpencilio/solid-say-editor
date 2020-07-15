@@ -1,13 +1,12 @@
-import SolidBlockHandler from "./block-handler";
+import TextBlockHandler from "./text-block-handler";
 
-
-class FilesBlockHandler extends SolidBlockHandler {
+class FilesBlockHandler extends TextBlockHandler {
 
     get scope(){
         return this.card; 
     }
 
-    isValidBlock(term){
+    isValidTerm(term){
         return term === "files"; 
     }
     get card(){
