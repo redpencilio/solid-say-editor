@@ -1,5 +1,5 @@
 import SolidBlockHandler from "./block-handler";
-
+import normalizeLocation from "../normalize-location"; 
 
 export default class TextBlockHandler extends SolidBlockHandler {
 
