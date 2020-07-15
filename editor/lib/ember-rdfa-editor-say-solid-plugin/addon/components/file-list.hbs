@@ -2,8 +2,8 @@
     {{#each @files as |file|}}
 
     {{#if file.children}}
-    <li class="folder">
-        {{file.name}}
+    <li>
+        <span onclick={{action "toggle"}}  class="folder">{{file.name}}</span>
         <FileList @files={{file.children}} class="hidden"/>
     </li>
     {{else}}

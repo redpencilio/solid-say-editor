@@ -1,10 +1,12 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 export default class FileListComponent extends Component {
   
   
     @action
-    toggle(){
-        console.log("test");
+    toggle(event){
+        console.log(event);
+        event.srcElement.nextElementSibling.classList.toggle("hidden");
     }
   }
