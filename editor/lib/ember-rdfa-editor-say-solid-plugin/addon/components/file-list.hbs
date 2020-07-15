@@ -1,0 +1,16 @@
+<ul ...attributes>
+    {{#each @files as |file|}}
+
+    {{#if file.children}}
+    <li>
+        <span onclick={{action "toggle"}}  class="folder">{{file.name}}</span>
+        <FileList @files={{file.children}} class="hidden"/>
+    </li>
+    {{else}}
+    <li>
+        {{file.name}}
+    </li>
+    {{/if}}
+
+    {{/each}}
+</ul>
