@@ -26,6 +26,8 @@ export default class SaySolidFilesCard extends Component {
 
     @tracked isLoading = false;
 
+    @tracked selectedFile = null;
+
     constructor() {
         super(...arguments);
         if (this.auth.webId) {
@@ -79,7 +81,14 @@ export default class SaySolidFilesCard extends Component {
     }
 
     @action
-    insertLinkToFile(file){
-        const html = `<a href="${file.path}" property="rdf:seeAlso">${file.name}</a>`;
+    insertSelectedFile(){
+        const html = `<a href="${this.selectedFile.path}" property="rdf:seeAlso">${this.selectedFile.name}</a>`;
+        FilesBlockHandler.handleClose(this.args.info, html);
+    }
+
+    @action
+    setSelectedFile(file){
+        console.log("set");
+        this.selectedFile = file;
     }
 }

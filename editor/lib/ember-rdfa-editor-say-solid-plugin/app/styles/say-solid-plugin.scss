@@ -1,5 +1,8 @@
 .folder {
     color: blue;
+}
+
+.file, .folder {
     cursor: pointer;
 }
 
@@ -17,4 +20,16 @@ ul {
 
 .hidden {
     display: none;
+}
+
+.selected {
+    background-color: blue;
+    color: white;
+}
+
+button:disabled, button:disabled:hover {
+    background-color: #cccccc;
+    color: #666666;
+    border: none;
+    cursor: not-allowed;
 }
