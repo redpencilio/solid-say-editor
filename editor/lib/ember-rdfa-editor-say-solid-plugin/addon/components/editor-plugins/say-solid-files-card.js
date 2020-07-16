@@ -6,6 +6,7 @@ import rdflib from 'ember-rdflib';
 import { LDP } from 'solid-addon/utils/namespaces';
 import File from '../../utils/file-managing/file';
 import Folder from '../../utils/file-managing/folder';
+import FilesBlockHandler from '../../utils/block-handlers/files-block-handler';
 
 const { Fetcher, namedNode } = rdflib;
 
@@ -24,6 +25,8 @@ export default class SaySolidFilesCard extends Component {
     @tracked files;
 
     @tracked isLoading = false;
+
+    @tracked selectedFile = null;
 
     constructor() {
         super(...arguments);
@@ -74,12 +77,18 @@ export default class SaySolidFilesCard extends Component {
 
     @action
     async close() {
-        const info = this.args.info;
-        info.hintsRegistry.removeHintsAtLocation(info.location, info.hrId, "say-solid-scope");
-        const mappedLocation = info.hintsRegistry.updateLocationToCurrentIndex(info.hrId, info.location);
-        const selection = info.editor.selectHighlight(mappedLocation);
-        info.editor.update(selection, {
-            set: { innerHTML: '' }
-        });
+        FilesBlockHandler.handleClose(this.args.info, '');
+    }
+
+    @action
+    insertSelectedFile(){
+        const html = `<a href="${this.selectedFile.path}" property="rdf:seeAlso">${this.selectedFile.name}</a>`;
+        FilesBlockHandler.handleClose(this.args.info, html);
+    }
+
+    @action
+    setSelectedFile(file){
+        console.log("set");
+        this.selectedFile = file;
     }
 }

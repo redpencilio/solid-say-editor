@@ -7,9 +7,10 @@
         {{/if}}
     </p>
     {{#if this.isLoading}}
+    <img src="/images/spinner.svg" alt="Loading">
     <p>Loading...</p>
     {{else}}
-    <FileList @files={{this.files}}/>
+    <FileList @files={{this.files}} @onSelect={{this.setSelectedFile}} @selectedFile={{this.selectedFile}}/>
     {{/if}}
 
 </div>
@@ -19,6 +20,7 @@
         {{#if this.auth.webId}}
         <WuButton @label="Refresh" @size="small" @isNarrow={{true}} @commandLocation="below"
             @onClick={{this.fetchFiles}} />
+        <WuButton @label="Insert link" @size="small" @isNarrow={{true}} @commandLocation="below" disabled={{if this.selectedFile false true}} @onClick={{this.insertSelectedFile}}/>
         <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
         {{else}}
         <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
