@@ -40,8 +40,6 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-    let ce = this.owner.lookup(EDIT_KEY); 
-    console.log(ce); 
     for( const rdfaBlock of rdfaBlocks ){
       for( const handler of this.solidHandlers){
         handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 
