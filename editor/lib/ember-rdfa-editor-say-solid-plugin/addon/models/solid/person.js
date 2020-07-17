@@ -1,5 +1,6 @@
 import { VCARD, FOAF, LDP, SP, SOLID } from 'solid-addon/utils/namespaces';
-import SemanticModel, { property, string, integer, term, solid, rdfType } from 'solid-addon/models/semantic-model';
+import { property, string, integer, term, solid, rdfType } from 'solid-addon/models/semantic-model';
+import RdfaSemanticModel from "../rdfa-semantic-model"; 
 
 @solid({
   defaultStorageLocation: "/profile/card.ttl",
@@ -7,7 +8,7 @@ import SemanticModel, { property, string, integer, term, solid, rdfType } from '
 })
 
 @rdfType(FOAF("Person"))
-export default class SolidPersonModel extends SemanticModel {
+export default class SolidPersonModel extends RdfaSemanticModel {
     defaultNamespace = VCARD;
   
     @string( { ns: FOAF } )
