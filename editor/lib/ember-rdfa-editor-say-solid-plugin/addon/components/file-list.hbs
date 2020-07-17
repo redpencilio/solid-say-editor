@@ -1,7 +1,7 @@
 <ul ...attributes>
     {{#each @files as |file|}}
 
-    {{#if file.children}}
+    {{#if file.children.length includeZero=true}}
     <li>
         <span onclick={{action "toggle"}}  class="folder">{{file.name}}</span>
         <FileList @files={{file.children}} class="hidden" @onSelect={{@onSelect}} @selectedFile={{@selectedFile}}/>
