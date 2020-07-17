@@ -42,7 +42,7 @@ export default class RdfaSemanticModel extends SemanticModel {
     }
 
     toRDFa(atttributes) {
-        let start = `<span about="${this.uri}" typeof="${this.rdfType.value}">`;
+        let start = `<span about="${this.uri.value}" typeof="${this.rdfType.value}">`;
         let stack = [start];
         for (let attr of atttributes) {
 

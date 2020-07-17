@@ -23,10 +23,7 @@ export default class SaySolidFetchCard extends Component {
   @action
   async insert() {
     await this.profile.fetchProfileInfo();
-    FetchBlockHandler.handleClose(this.args.info, 
-      `<span about=${this.auth.webId} typeof="foaf:Person"> 
-              <a href=${this.auth.webId}><span property="foaf:name">${this.profile.me.name}</span></a>
-              </span>`)
+    FetchBlockHandler.handleClose(this.args.info, this.profile.me.toRDFa(this.profile.me.attributes));
   }
 
   @action
