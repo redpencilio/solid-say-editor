@@ -41,10 +41,10 @@ export default class RdfaSemanticModel extends SemanticModel {
         });
     }
 
-    toRDFa() {
+    toRDFa(atttributes) {
         let start = `<span about="${this.uri}" typeof="${this.rdfType.value}">`;
         let stack = [start];
-        for (let attr of this.attributes) {
+        for (let attr of atttributes) {
 
             let rdfaTag = this.generateRDFaTag(this.getPredObj(attr));
             stack.push(rdfaTag);
