@@ -1,13 +1,13 @@
-import SolidBlockHandler from "./block-handler";
+import TextBlockHandler from "./text-block-handler";
 
 
-class FetchBlockHandler extends SolidBlockHandler {
+class FetchBlockHandler extends TextBlockHandler {
 
     get scope() {
         return this.card;
     }
 
-    isValidBlock(term) {
+    isValidTerm(term) {
         return term === "me";
     }
     get card() {
@@ -17,5 +17,5 @@ class FetchBlockHandler extends SolidBlockHandler {
 
 }
 
-const single = new FetchBlockHandler();
+const single = FetchBlockHandler.create();
 export default single; 

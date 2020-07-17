@@ -1,9 +1,10 @@
 import Service from '@ember/service';
+import {getOwner} from "@ember/application"; 
 import BlockHandler from  "../utils/block-handlers/block-handler"; 
 import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
 import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
 import FilesBlockHandler from "../utils/block-handlers/files-block-handler"
-
+import EditBlockHandler, {EDIT_KEY} from "../utils/block-handlers/edit-block-handler"; 
 
 
 /**
@@ -17,10 +18,12 @@ import FilesBlockHandler from "../utils/block-handlers/files-block-handler"
 export default class RdfaEditorSaySolidPlugin extends Service {
   
 
+  owner = getOwner(this); 
+ 
   /**
    * @type {BlockHandler[]}
    */
-  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler]
+  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(EDIT_KEY)];
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
@@ -37,7 +40,8 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-
+    let ce = this.owner.lookup(EDIT_KEY); 
+    console.log(ce); 
     for( const rdfaBlock of rdfaBlocks ){
       for( const handler of this.solidHandlers){
         handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 

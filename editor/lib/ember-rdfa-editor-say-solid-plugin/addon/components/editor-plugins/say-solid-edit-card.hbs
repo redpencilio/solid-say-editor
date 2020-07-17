@@ -1,1 +1,51 @@
-{{yield}}
+<div class="modal-dialog__content">
+  <p class="u-spacer--tiny">
+    {{#if this.auth.webId}}
+        {{#if this.isEditMode}}
+            <div>
+                {{!-- <form> --}}
+                    <label for="name">name</label>
+                    <Input id="name" @value={{this.profile.me.name}}/>
+                    <br>
+                    <label for="formattedName">formattedName</label>
+                    <Input id="formattedName" @value={{this.profile.me.formattedName}}/>
+                    <br>
+                    <label for="organizationName">organizationName</label>
+                    <Input id="organizationName" @value={{this.profile.me.organizationName}}/>
+                    <br>
+                    <label for="inbox">inbox</label>
+                    <Input id="inbox" @value={{this.profile.me.inbox}}/>
+                    <br>
+                    <label for="storage">storage</label>
+                    <Input id="storage" @value={{this.profile.me.storage}}/>
+                    <br>
+                    <label for="account">account</label>
+                    <Input id="account" @value={{this.profile.me.account}}/>
+                    <br>
+                    <label for="privateTypeIndex">privateTypeIndex</label>
+                    <Input id="privateTypeIndex" @value={{this.profile.me.privateTypeIndex}}/>
+                    <br>
+                    <label for="publicTypeIndex">publicTypeIndex</label>
+                    <Input id="publicTypeIndex" @value={{this.profile.me.publicTypeIndex}}/>
+                    <br>
+                    <WuButton @label="Update Profile" @size="small" @isNarrow={{true}} @onClick={{this.saveUser}}/>
+                {{!-- </form> --}}
+            </div>
+
+        {{else}}
+            <strong>Do you want to edit your profile card?</strong>
+        {{/if}}
+    {{else}}
+    <strong>You are not logged in</strong>
+    {{/if}}
+  </p>
+</div>
+<div class="modal-dialog__footer">
+ <WuButtonGroup>
+    {{#if this.auth.webId}}
+     {{#unless this.isEditMode}}
+    <WuButton @label="Yes" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.toggleEdit}} />
+    {{/unless}}
+    {{/if}}
+  </WuButtonGroup>
+</div>
