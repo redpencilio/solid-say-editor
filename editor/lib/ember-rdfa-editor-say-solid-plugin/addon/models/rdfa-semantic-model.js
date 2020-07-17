@@ -26,7 +26,7 @@ export default class RdfaSemanticModel extends SemanticModel {
         let content = type === "term" ? `href="${value}"` : `content="${value}"`;
 
 
-        return `<span property="${property}" ${content}/>`;
+        return `<span property="${property}" ${content}> ${value} </span>`;
     }
     
     isRelevantContext(rdfa){
