@@ -10,21 +10,9 @@ export default class EditInEditorBlockHandler extends SolidHandler {
     @service auth;
     @service profile;
 
-    hasRelevantContext(block) {
-        return block.context.find(ctxt => {
-            return ctxt.subject === this.auth.webId && ctxt.predicate === FOAF("name").value;
-        }
-        );
-    }
-
     handle(hrId, block, hintsRegistry, editor) {
-        if(this.hasRelevantContext(block)){
-            console.log(this.getName(block));
-            this.profile.me.name = this.getName(block);
+        if(this.profile.me){
+            this.profile.me.fromRDFa(block.context);
         }
-    }
-
-    getName(block){
-        return block.context.find(n => n.predicate === FOAF("name").value).object;
     }
 }
