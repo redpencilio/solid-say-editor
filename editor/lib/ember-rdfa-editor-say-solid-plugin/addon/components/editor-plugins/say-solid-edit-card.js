@@ -25,9 +25,7 @@ export default class EditorPluginsSaySolidEditCardComponent extends Component {
   @action
   async saveUser() {
     this.owner.lookup(EDIT_KEY).handleClose(this.args.info, 
-      `<span about=${this.auth.webId} typeof="foaf:Person"> 
-              <a href=${this.auth.webId} property="foaf:name" content="${this.profile.me.name}" >${this.profile.me.name}</a>
-              </span>`);
+      `<a href=${this.auth.webId}><span property="foaf:name">${this.profile.me.name}</span></a>`);
     this.store.persist();
     console.log("save");
   }
