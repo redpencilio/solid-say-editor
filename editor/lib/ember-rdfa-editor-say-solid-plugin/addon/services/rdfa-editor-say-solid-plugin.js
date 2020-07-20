@@ -1,5 +1,13 @@
 import Service from '@ember/service';
-import normalizeLocation from '../utils/normalize-location';
+import {getOwner} from "@ember/application"; 
+import BlockHandler from  "../utils/block-handlers/block-handler"; 
+import FetchBlockHandler from "../utils/block-handlers/fetch-block-handler"; 
+import LoginBlockHandler from "../utils/block-handlers/login-block-handler"; 
+import FilesBlockHandler from "../utils/block-handlers/files-block-handler"
+import EditBlockHandler, {EDIT_KEY} from "../utils/block-handlers/edit-block-handler"; 
+import EditInEditorBlockHandler, {EDIT_EDITOR_KEY} from '../utils/block-handlers/edit-in-editor-block-handler';
+import { SAVE_KEY } from '../utils/block-handlers/save-block-handler';
+
 
 /**
  * Entry point for SaySolid
@@ -10,6 +18,14 @@ import normalizeLocation from '../utils/normalize-location';
  * @extends EmberService
  */
 export default class RdfaEditorSaySolidPlugin extends Service {
+  
+
+  owner = getOwner(this); 
+ 
+  /**
+   * @type {BlockHandler[]}
+   */
+  solidHandlers = [this.owner.lookup(EDIT_EDITOR_KEY), FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(SAVE_KEY)];
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
@@ -26,31 +42,13 @@ export default class RdfaEditorSaySolidPlugin extends Service {
    * @public
    */
   execute(hrId, rdfaBlocks, hintsRegistry, editor) {
-    console.log(hrId);
-    console.log("tes");
-    const hints = [];
-
     for( const rdfaBlock of rdfaBlocks ){
-      hintsRegistry.removeHintsInRegion(rdfaBlock.region, hrId, "say-solid-scope");
+      for( const handler of this.solidHandlers){
+        handler.handle(hrId, rdfaBlock, hintsRegistry, editor); 
 
-      let idx = rdfaBlock.text.toLowerCase().indexOf('hello');
-      if( idx !== -1 ) {
-        // the hintsregistry needs to know the location with respect to the document
-        const absoluteLocation = normalizeLocation( [idx, idx + 'hello'.length], rdfaBlock.region );
-
-        hints.push( {
-          // info for the hintsRegistry
-          location: absoluteLocation,
-          card: "editor-plugins/say-solid-card",
-          // any content you need to render the component and handle its actions
-          info: {
-            hrId, hintsRegistry, editor,
-            location: absoluteLocation,
-          }
-        });
       }
+      
     }
     
-    hintsRegistry.addHints(hrId, "say-solid-scope", hints);
   }
 }

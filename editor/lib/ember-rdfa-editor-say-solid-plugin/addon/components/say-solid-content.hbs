@@ -1,0 +1,11 @@
+<div class="modal-dialog__content">
+  <p class="u-spacer--tiny">
+    <ProfileHeader @person={{@person}}/>
+    {{#if @webId}}
+    <strong>{{@header}}</strong>
+    {{else}}
+    <strong>You are not logged in</strong>
+    {{/if}}
+  </p>
+  {{yield}}
+</div>

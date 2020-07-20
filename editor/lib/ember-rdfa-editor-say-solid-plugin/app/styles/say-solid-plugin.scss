@@ -1,0 +1,46 @@
+.folder {
+    color: blue;
+}
+
+.file, .folder {
+    cursor: pointer;
+}
+
+.folder::before {
+    content: "\25B6";
+    margin-right: 8px;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.selected {
+    background-color: blue;
+    color: white;
+}
+
+button:disabled, button:disabled:hover {
+    background-color: #cccccc;
+    color: #666666;
+    border: none;
+    cursor: not-allowed;
+}
+
+.profile {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+}
