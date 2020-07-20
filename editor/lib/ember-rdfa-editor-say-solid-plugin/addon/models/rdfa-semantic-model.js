@@ -66,7 +66,6 @@ export default class RdfaSemanticModel extends SemanticModel {
                 const prop = this.getRelevantProperty(rdfa, this.uri.value, predicate);
                 if(prop){
 
-                    console.log("FromRDFa function"); 
                     let domNode = block.semanticNode.domNode;
                     if (domNode.hasAttribute("content")){
                         domNode.setAttribute("content", block.text); 
