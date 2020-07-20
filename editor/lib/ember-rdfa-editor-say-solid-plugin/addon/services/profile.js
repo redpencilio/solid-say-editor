@@ -8,6 +8,7 @@ const { Fetcher, namedNode } = rdflib;
 export default class ProfileService extends Service {
     @service auth;
     @service("rdf-store") store;
+    @tracked madeChanges = false;
 
     @tracked me = null;
 

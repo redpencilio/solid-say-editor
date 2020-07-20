@@ -1,9 +1,11 @@
 import SemanticModel, { property, string, integer, term, solid, rdfType } from 'solid-addon/models/semantic-model';
+import { inject as service } from '@ember/service';
 
 
 
 export default class RdfaSemanticModel extends SemanticModel {
 
+    @service profile;
 
     getPredObj(attr) {
         let attrDef = this.attributeDefinitions[attr];
@@ -68,6 +70,7 @@ export default class RdfaSemanticModel extends SemanticModel {
                 console.log(prop );
                 if(prop){
                     this[attributeDef] = prop.object;
+                    this.profile.madeChanges = true;
                 }
             }
         }
