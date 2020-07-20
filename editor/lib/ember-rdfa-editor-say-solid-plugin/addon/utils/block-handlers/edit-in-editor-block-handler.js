@@ -13,7 +13,7 @@ export default class EditInEditorBlockHandler extends SolidHandler {
     handle(hrId, block, hintsRegistry, editor) {
         
         if(this.profile.me){
-            this.profile.me.fromRDFa({editor, rdfa: block.context, block});
+            this.profile.me.fromRDFa({ rdfa: block.context, block});
         }
     }
 }

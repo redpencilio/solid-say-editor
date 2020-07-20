@@ -54,7 +54,7 @@ export default class RdfaSemanticModel extends SemanticModel {
         return stack.join("\n");
     }
 
-    fromRDFa({editor, rdfa, block}){
+    fromRDFa({rdfa, block}){
         if(this.isRelevantContext(rdfa)){
             for(let attributeDef in this.attributeDefinitions){
                 let predicate;
