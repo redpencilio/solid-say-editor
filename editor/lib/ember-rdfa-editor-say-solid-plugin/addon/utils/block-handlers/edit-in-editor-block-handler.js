@@ -13,9 +13,7 @@ export default class EditInEditorBlockHandler extends SolidHandler {
     handle(hrId, block, hintsRegistry, editor) {
         
         if(this.profile.me){
-            console.log("Real time edit");
-            console.log(editor);
-            this.profile.me.fromRDFa(block.context);
+            this.profile.me.fromRDFa({editor, rdfa: block.context, block});
         }
     }
 }
