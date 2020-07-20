@@ -68,7 +68,7 @@ export default class RdfaSemanticModel extends SemanticModel {
                 const prop = this.getRelevantProperty(rdfa, this.uri.value, predicate);
                 console.log("FromRDFa function"); 
                 console.log(prop );
-                if(prop){
+                if(prop && this[attributeDef] !== prop.object){
                     this[attributeDef] = prop.object;
                     this.profile.madeChanges = true;
                 }

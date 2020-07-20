@@ -21,7 +21,7 @@ export default class ProfileService extends Service {
     }
 
     async sendProfileInfo(){
-        this.store.persist();
+        await this.store.persist();
     }
 
 
