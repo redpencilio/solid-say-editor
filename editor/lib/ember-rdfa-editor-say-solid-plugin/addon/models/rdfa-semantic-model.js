@@ -56,7 +56,7 @@ export default class RdfaSemanticModel extends SemanticModel {
         return stack.join("\n");
     }
 
-    fromRDFa(rdfa){
+    fromRDFa({rdfa, block}){
         if(this.isRelevantContext(rdfa)){
             for(let attributeDef in this.attributeDefinitions){
                 let predicate;
@@ -66,13 +66,20 @@ export default class RdfaSemanticModel extends SemanticModel {
                     predicate = this.attributeDefinitions[attributeDef].predicate.value;
                 }
                 const prop = this.getRelevantProperty(rdfa, this.uri.value, predicate);
-                // console.log("FromRDFa function"); 
-                // console.log(prop );
-                if(prop && this[attributeDef] !== prop.object && !this[attributeDef].value){
-                    console.log(this[attributeDef])
-                    console.log(prop.object);
-                    this[attributeDef] = prop.object;
-                    this.profile.madeChanges = true;
+                if(prop){
+                    let domNode = block.semanticNode.domNode;
+                    if (domNode.hasAttribute("content")){
+                        domNode.setAttribute("content", block.text); 
+                    }
+
+                    if (domNode.hasAttribute("href")){
+                        domNode.setAttribute("href", block.text); 
+                    }
+                    prop.object = block.text;
+                    if(this[attributeDef] !== prop.object && !this[attributeDef].value){
+                        this[attributeDef] = prop.object;
+                        this.profile.madeChanges = true;
+                    }
                 }
             }
         }
