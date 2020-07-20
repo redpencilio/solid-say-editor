@@ -11,8 +11,9 @@ export default class EditInEditorBlockHandler extends SolidHandler {
     @service profile;
 
     handle(hrId, block, hintsRegistry, editor) {
+        
         if(this.profile.me){
-            this.profile.me.fromRDFa(block.context);
+            this.profile.me.fromRDFa({ rdfa: block.context, block});
         }
     }
 }

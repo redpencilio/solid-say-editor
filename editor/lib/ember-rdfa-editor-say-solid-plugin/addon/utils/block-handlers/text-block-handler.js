@@ -22,6 +22,7 @@ export default class TextBlockHandler extends SolidBlockHandler {
     handle(hrId, block, hintsRegistry, editor) {
 
         hintsRegistry.removeHintsInRegion(block.region, hrId, this.scope);
+        if(!block.text) return; 
         const match = block.text.match(this.regex);
 
         if (match) {
