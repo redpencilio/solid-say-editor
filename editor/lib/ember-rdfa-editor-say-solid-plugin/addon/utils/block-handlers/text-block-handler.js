@@ -10,6 +10,7 @@ export default class TextBlockHandler extends SolidBlockHandler {
     isValidTerm(term) {
         return false;
     }
+    
 
     /**
      * @param {string} hrId Unique identifier of the state in the HintsRegistry.  Allows the
