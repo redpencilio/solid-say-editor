@@ -7,6 +7,7 @@ import { SAVE_KEY } from '../../utils/block-handlers/save-block-handler';
 export default class EditorPluginsSaySolidEditCardComponent extends Component {
   @service auth;
   @service("rdf-store") store;
+  @service profile;
   owner = getOwner(this); 
 
 
