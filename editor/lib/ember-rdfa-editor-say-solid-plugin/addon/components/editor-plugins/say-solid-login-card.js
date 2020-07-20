@@ -15,13 +15,15 @@ const { Fetcher, namedNode } = rdflib;
  * @extends Ember.Component
  */
 export default class SaySolidLoginCard extends Component {
-  @service  auth;
+  @service auth;
+  @service profile;
 
 
   @action
   async login() {
     await this.auth.ensureLogin();
     await this.auth.ensureTypeIndex();
+    await this.profile.fetchProfileInfo();
   }
 
   @action

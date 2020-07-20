@@ -1,5 +1,6 @@
 <div class="modal-dialog__content">
   <p class="u-spacer--tiny">
+    <ProfileHeader @person={{this.profile.me}}/>
     {{#if this.auth.webId}}
     <strong>Select the data from your profile you wish to insert:</strong>
     {{#each (array 'name' 'formattedName' 'organizationName') as |pred|}}

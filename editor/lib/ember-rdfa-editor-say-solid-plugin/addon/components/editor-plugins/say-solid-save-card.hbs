@@ -1,5 +1,6 @@
 <div class="modal-dialog__content">
   <p class="u-spacer--tiny">
+    <ProfileHeader @person={{this.profile.me}}/>
     {{#if this.auth.webId}}
     <strong>You have unsaved changes...</strong>
     {{else}}

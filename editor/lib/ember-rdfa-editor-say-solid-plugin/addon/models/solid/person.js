@@ -37,5 +37,8 @@ export default class SolidPersonModel extends RdfaSemanticModel {
   
     @term( { ns: SOLID } )
     publicTypeIndex = null;
+
+    @term( { predicate: VCARD("hasPhoto") })
+    picture = null;
   
   }
