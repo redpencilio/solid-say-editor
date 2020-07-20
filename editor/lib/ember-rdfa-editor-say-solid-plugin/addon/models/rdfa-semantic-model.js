@@ -57,6 +57,7 @@ export default class RdfaSemanticModel extends SemanticModel {
     }
 
     fromRDFa({rdfa, block}){
+        console.log(rdfa);
         if(this.isRelevantContext(rdfa)){
             for(let attributeDef in this.attributeDefinitions){
                 let predicate;
@@ -75,8 +76,11 @@ export default class RdfaSemanticModel extends SemanticModel {
                     if (domNode.hasAttribute("href")){
                         domNode.setAttribute("href", block.text); 
                     }
-                    prop.object = block.text;
-                    if(this[attributeDef] !== prop.object){
+
+                    prop.object = block.text.trim();
+                    console.log(prop.object);
+                    console.log(this[attributeDef]);
+                    if(this[attributeDef].trim() !== prop.object.trim()){
                         this[attributeDef] = prop.object;
                         this.profile.madeChanges = true;
                     }

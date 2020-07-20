@@ -25,7 +25,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
   /**
    * @type {BlockHandler[]}
    */
-  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(EDIT_KEY), this.owner.lookup(EDIT_EDITOR_KEY), this.owner.lookup(SAVE_KEY)];
+  solidHandlers = [this.owner.lookup(EDIT_EDITOR_KEY), FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(SAVE_KEY)];
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
