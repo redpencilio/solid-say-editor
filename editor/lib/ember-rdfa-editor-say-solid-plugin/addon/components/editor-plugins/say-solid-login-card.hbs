@@ -1,20 +1,8 @@
-<div class="modal-dialog__content">
-    <p class="u-spacer--tiny">
-        <ProfileHeader @person={{this.profile.me}}/>
-        {{#if this.auth.webId}}
-        <strong>You are logged in.</strong>
-        Your webID is: {{this.auth.webId}}
-        {{else}}
-        <strong>Login with Solid.</strong>
-        {{/if}}
-    </p>
-</div>
-<div class="modal-dialog__footer">
-    <WuButtonGroup>
-        {{#if this.auth.webId}}
+<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="Your webID is: {{this.auth.webId}}"/>
+<SaySolidFooter>
+    {{#if this.auth.webId}}
         <WuButton @label="Close card" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
         {{else}}
         <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
         {{/if}}
-    </WuButtonGroup>
-</div>
+</SaySolidFooter>
