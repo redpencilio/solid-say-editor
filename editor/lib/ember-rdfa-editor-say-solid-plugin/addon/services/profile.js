@@ -8,6 +8,7 @@ const { Fetcher, namedNode } = rdflib;
 export default class ProfileService extends Service {
     @service auth;
     @service("rdf-store") store;
+    @tracked madeChanges = false;
 
     @tracked me = null;
 
@@ -20,7 +21,7 @@ export default class ProfileService extends Service {
     }
 
     async sendProfileInfo(){
-        this.store.persist();
+        await this.store.persist();
     }
 
 

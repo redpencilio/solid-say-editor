@@ -1,9 +1,11 @@
 import SemanticModel, { property, string, integer, term, solid, rdfType } from 'solid-addon/models/semantic-model';
+import { inject as service } from '@ember/service';
 
 
 
 export default class RdfaSemanticModel extends SemanticModel {
 
+    @service profile;
 
     getPredObj(attr) {
         let attrDef = this.attributeDefinitions[attr];
@@ -65,7 +67,6 @@ export default class RdfaSemanticModel extends SemanticModel {
                 }
                 const prop = this.getRelevantProperty(rdfa, this.uri.value, predicate);
                 if(prop){
-
                     let domNode = block.semanticNode.domNode;
                     if (domNode.hasAttribute("content")){
                         domNode.setAttribute("content", block.text); 
@@ -75,7 +76,10 @@ export default class RdfaSemanticModel extends SemanticModel {
                         domNode.setAttribute("href", block.text); 
                     }
                     prop.object = block.text;
-                    this[attributeDef] = prop.object;
+                    if(this[attributeDef] !== prop.object && !this[attributeDef].value){
+                        this[attributeDef] = prop.object;
+                        this.profile.madeChanges = true;
+                    }
                 }
             }
         }

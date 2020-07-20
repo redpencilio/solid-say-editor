@@ -6,6 +6,7 @@ import LoginBlockHandler from "../utils/block-handlers/login-block-handler";
 import FilesBlockHandler from "../utils/block-handlers/files-block-handler"
 import EditBlockHandler, {EDIT_KEY} from "../utils/block-handlers/edit-block-handler"; 
 import EditInEditorBlockHandler, {EDIT_EDITOR_KEY} from '../utils/block-handlers/edit-in-editor-block-handler';
+import { SAVE_KEY } from '../utils/block-handlers/save-block-handler';
 
 
 /**
@@ -24,7 +25,7 @@ export default class RdfaEditorSaySolidPlugin extends Service {
   /**
    * @type {BlockHandler[]}
    */
-  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(EDIT_KEY), this.owner.lookup(EDIT_EDITOR_KEY)];
+  solidHandlers = [FetchBlockHandler, LoginBlockHandler, FilesBlockHandler, this.owner.lookup(EDIT_KEY), this.owner.lookup(EDIT_EDITOR_KEY), this.owner.lookup(SAVE_KEY)];
 
   /**
    * Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
