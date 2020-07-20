@@ -38,20 +38,18 @@ export default class SaveBlockHandler extends SolidHandler {
      * @param {Object} editor Your public interface through which you can alter the document.
      */
     handle(hrId, block, hintsRegistry, editor) {
-
-        hintsRegistry.removeHintsInRegion(block.region, hrId, this.scope);
-        if (this.hasRelevantContext(block)) {
-            const textTrimmed = block.text.replace(/\s*$/, "");
-            const spacesAtTheStart = textTrimmed.length - block.text.trim().length;
-            const absoluteLocation = normalizeLocation([spacesAtTheStart, spacesAtTheStart + textTrimmed.length], block.region);
+        const region = editor.richNode.region;
+        const hints = hintsRegistry.getHintsInRegion(region, hrId, this.scope);
+        // hintsRegistry.removeHintsInRegion(block.region, hrId, this.scope);
+        if (this.hasRelevantContext(block) && hints.length === 0) {
             let cardObj = {
                 // info for the hintsRegistry
-                location: absoluteLocation,
+                location: region,
                 card: this.card,
                 // any content you need to render the component and handle its actions
                 info: {
                     hrId, hintsRegistry, editor,
-                    location: absoluteLocation,
+                    location: region,
                 }
             };
 
