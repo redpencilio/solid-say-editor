@@ -1,7 +1,12 @@
 # solid-say-editor
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Say-editor plugin that adds a connection to Solid. Currently the user is able to import his/her Solid profile in the editor. It is also possible to edit your profile in-editor and send the data back to your Solid pod. Additionally, this plugin features the option to insert links to documents on your Solid pod.
+
+## Upcoming features
+* Importing and editing all types of documents in the editor, not only the profile document.
+* The possibility to add and remove triples to documents. When adding a property to a subject in a document, the user will be presented where he/she can select the predicate and if the object is a literal value (and which type) or if it is a uri of a resource.
+
+
 
 ## Prerequisites
 
