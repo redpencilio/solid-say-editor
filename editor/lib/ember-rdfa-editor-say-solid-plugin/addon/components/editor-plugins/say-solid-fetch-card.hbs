@@ -1,7 +1,12 @@
 <div class="modal-dialog__content">
   <p class="u-spacer--tiny">
     {{#if this.auth.webId}}
-    <strong>Do you want to insert your profile card?</strong>
+    <strong>Select the data from your profile you wish to insert:</strong>
+    {{#each (array 'name' 'formattedName' 'organizationName') as |pred|}}
+      <br>
+      <input type="checkbox" id={{pred}} {{on "click" (fn this.onSelect pred) }}>
+      <label for={{pred}}>{{pred}}</label>
+    {{/each}}
     {{else}}
     <strong>You are not logged in</strong>
     {{/if}}

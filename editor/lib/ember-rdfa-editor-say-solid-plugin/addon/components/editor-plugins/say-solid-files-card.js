@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import rdflib from 'ember-rdflib';
-import { LDP } from 'solid-addon/utils/namespaces';
+import { LDP, RDF } from 'solid-addon/utils/namespaces';
 import File from '../../utils/file-managing/file';
 import Folder from '../../utils/file-managing/folder';
 import FilesBlockHandler from '../../utils/block-handlers/files-block-handler';
@@ -56,8 +56,9 @@ export default class SaySolidFilesCard extends Component {
         }
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
+            const isFolder = this.store.match(file.object, RDF("type"), LDP("Container"));
             let children = await this.getFiles(file.object, fetcher);
-            if (children.length > 0) {
+            if (isFolder.length > 0) {
                 let folderObj = new Folder(file.object.value, children);
                 result.push(folderObj);
             } else {
