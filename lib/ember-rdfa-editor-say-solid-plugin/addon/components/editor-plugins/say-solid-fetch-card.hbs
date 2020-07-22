@@ -3,7 +3,7 @@
     {{#each (array 'name' 'formattedName' 'organizationName') as |pred|}}
       <br>
       <input type="checkbox" id={{pred}} {{on "click" (fn this.onSelect pred) }}>
-      <label for={{pred}}>{{pred}}</label>
+      <label for={{pred}}>{{pred.label}}</label>
     {{/each}}
   {{/if}}
 </SaySolidContent>
