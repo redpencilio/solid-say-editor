@@ -1,9 +1,13 @@
-<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="Your Solid Files">
+<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="Your Solid Pod">
     {{#if this.isLoading}}
     <img src="/images/spinner.svg" alt="Loading">
     <p>Loading...</p>
     {{else}}
+    {{#if (isequal this.currentScreen this.screens.FILES)}}
     <FileList @files={{this.files}} @onSelect={{this.setSelectedFile}} @selectedFile={{this.selectedFile}} />
+    {{else}}
+    <SubjectList @file={{this.selectedFile.path}}/>
+    {{/if}}
     {{/if}}
 </SaySolidContent>
 <SaySolidFooter>
@@ -11,6 +15,8 @@
     <WuButton @label="Refresh" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.fetchFiles}} />
     <WuButton @label="Insert link" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if this.selectedFile false true}} @onClick={{this.insertSelectedFile}} />
+    <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
+        disabled={{if this.selectedFile false true}} @onClick={{this.openFile}} />
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
     {{else}}
     <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />

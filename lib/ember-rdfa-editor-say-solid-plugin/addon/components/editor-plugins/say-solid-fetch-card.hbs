@@ -9,7 +9,7 @@
 </SaySolidContent>
 <SaySolidFooter>
   {{#if this.profile.me}}
-    <WuButton @label="Yes" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
+    <WuButton @label="Insert" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
     {{else}}
     <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
     {{/if}}
