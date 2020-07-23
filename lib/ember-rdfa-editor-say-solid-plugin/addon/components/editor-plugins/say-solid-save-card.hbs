@@ -1,8 +1,10 @@
-<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="You have unsaved changes..."/>
+<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="You have unsaved changes..." />
 <SaySolidFooter>
     {{#if this.auth.webId}}
-     {{#unless this.isEditMode}}
+    {{#unless this.isEditMode}}
     <WuButton @label="Save" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.save}} />
+    <WuButton @label="Reset" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.reset}} />
+
     {{/unless}}
     {{/if}}
 </SaySolidFooter>
