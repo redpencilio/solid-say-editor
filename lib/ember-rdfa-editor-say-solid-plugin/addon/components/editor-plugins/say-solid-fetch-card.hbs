@@ -1,4 +1,4 @@
-<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="Select the data from your profile you wish to insert:">
+<SaySolidContent  @webId={{this.auth.webId}} @header="Select the data from your profile you wish to insert:">
   {{#if this.profile.me}}
     {{#each this.attributes as |pred|}}
       <br>
