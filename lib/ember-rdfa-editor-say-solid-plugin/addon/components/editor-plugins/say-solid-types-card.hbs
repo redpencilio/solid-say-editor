@@ -1,0 +1,7 @@
+{{#if (isequal this.currentScreen this.screens.TYPES)}}
+<TypeSelector  @onSelect={{this.setSelectedType}} @selectedType={{this.selectedType}} @onClose={{this.onClose}} @onOpen={{this.openType}}/>
+{{else if (isequal this.currentScreen this.screens.SUBJECTS)}}
+<SubjectList @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedGraph}} @onClose={{this.onClose}} @onOpen={{this.openSubject}}/>
+{{else}}
+<PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject.path}}/>
+{{/if}}
