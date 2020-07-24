@@ -1,16 +1,1 @@
-<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header="Select the data from your profile you wish to insert:">
-  {{#if this.profile.me}}
-    {{#each this.attributes as |pred|}}
-      <br>
-      <input type="checkbox" id={{pred.value}} {{on "click" (fn this.onSelect pred.value) }}>
-      <label for={{pred.value}}>{{pred.value}}</label>
-    {{/each}}
-  {{/if}}
-</SaySolidContent>
-<SaySolidFooter>
-  {{#if this.profile.me}}
-    <WuButton @label="Yes" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
-    {{else}}
-    <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
-    {{/if}}
-</SaySolidFooter>
+<PredicateSelector @onClose={{this.onClose}} @subject={{this.heroes}}/>

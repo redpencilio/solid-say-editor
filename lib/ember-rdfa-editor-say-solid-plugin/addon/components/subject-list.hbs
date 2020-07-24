@@ -1,0 +1,26 @@
+
+<SaySolidContent @person={{this.profile.me}} @webId={{this.auth.webId}} @header={{this.fileName}}>
+    {{#if this.isLoading}}
+    <img src="/images/spinner.svg" alt="Loading">
+    <p>Loading...</p>
+    {{else}}
+    <ul>
+    {{#each this.subjects as |subject|}}
+
+    <li>
+        <span {{on "click" (fn @onSelect subject)}} class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{subject.name}}</span>
+    </li>
+
+    {{/each}}
+    </ul>
+    {{/if}}
+</SaySolidContent>
+<SaySolidFooter>
+    {{#if this.auth.webId}}
+    <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
+        disabled={{if @selectedSubject false true}} @onClick={{@onOpen}} />
+    <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
+    {{else}}
+    <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
+    {{/if}}
+</SaySolidFooter>
