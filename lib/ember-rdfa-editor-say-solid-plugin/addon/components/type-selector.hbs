@@ -1,24 +1,28 @@
 
-<SaySolidContent @webId={{this.auth.webId}} @header={{this.fileName}}>
+<SaySolidContent @webId={{this.auth.webId}} @header="Type Overview">
     {{#if this.isLoading}}
     <img src="/images/spinner.svg" alt="Loading">
     <p>Loading...</p>
     {{else}}
     <ul>
-    {{#each this.subjects as |subject|}}
+    {{#if this.types}}
+    {{#each this.types as |type|}}
 
     <li>
-        <span {{on "click" (fn @onSelect subject)}} class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{subject.name}}</span>
+        <span {{on "click" (fn @onSelect type)}} class="type {{if (isequal type @selectedType) "selected"}}">{{type.value}}</span>
     </li>
 
     {{/each}}
+    {{else}}
+    <p>No Types Found</p>
+    {{/if}}
     </ul>
     {{/if}}
 </SaySolidContent>
 <SaySolidFooter>
     {{#if this.auth.webId}}
     <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
-        disabled={{if @selectedSubject false true}} @onClick={{@onOpen}} />
+        disabled={{if @selectedType false true}} @onClick={{@onOpen}} />
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
     {{else}}
     <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
