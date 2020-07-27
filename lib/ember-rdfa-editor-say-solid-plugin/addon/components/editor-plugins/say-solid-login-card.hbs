@@ -1,8 +1,4 @@
-<SaySolidContent  @webId={{this.auth.webId}} @header="Your webID is: {{this.auth.webId}}"/>
-<SaySolidFooter>
-    {{#if this.auth.webId}}
-        <WuButton @label="Close card" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
-        {{else}}
-        <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
-        {{/if}}
+<SaySolidContent  @me={{this.profile.me}}  @header="Your webID is: {{this.auth.webId}}"/>
+<SaySolidFooter @me={{this.profile.me}} >
+    <WuButton @label="Close card" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
 </SaySolidFooter>

@@ -1,5 +1,6 @@
 
-<SaySolidContent @webId={{this.auth.webId}} @header="Type Overview">
+<SaySolidContent @me={{this.profile.me}} @header="Type Overview">
+    <div {{did-insert this.fetchTypes}}>
     {{#if this.isLoading}}
     <img src="/images/spinner.svg" alt="Loading">
     <p>Loading...</p>
@@ -18,13 +19,10 @@
     {{/if}}
     </ul>
     {{/if}}
+    </div>
 </SaySolidContent>
-<SaySolidFooter>
-    {{#if this.auth.webId}}
+<SaySolidFooter @me={{this.profile.me}}>
     <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if @selectedType false true}} @onClick={{@onOpen}} />
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
-    {{else}}
-    <WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
-    {{/if}}
 </SaySolidFooter>

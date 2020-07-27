@@ -1,7 +1,7 @@
 {{#if (isequal this.currentScreen this.screens.FILES)}}
-<FileSelector  @onSelect={{this.setSelectedFile}} @selectedFile={{this.selectedFile}} @onClose={{this.onClose}} @onOpen={{this.openFile}}/>
+<Selectors::FileSelector  @onSelect={{this.setSelectedFile}} @selectedFile={{this.selectedFile}} @onClose={{this.onClose}} @onOpen={{this.openFile}}/>
 {{else if (isequal this.currentScreen this.screens.SUBJECTS)}}
-<SubjectList @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedFile.path}} @onClose={{this.onClose}} @onOpen={{this.openSubject}}/>
+<Selectors::SubjectSelector @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedFile.path}} @onClose={{this.onClose}} @onOpen={{this.openSubject}}/>
 {{else}}
-<PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject.path}}/>
+<Selectors::PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject.path}}/>
 {{/if}}

@@ -1,0 +1,12 @@
+<SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
+    <div {{did-insert this.resetAttributes}}>
+      {{#each this.attributes as |pred|}}
+        <br>
+        <input type="checkbox" id={{pred.value}} {{on "click" (fn this.onSelect pred.value) }}>
+        <label for={{pred.value}}>{{pred.value}}</label>
+      {{/each}}
+    </div>
+</SaySolidContent>
+<SaySolidFooter @me={{this.profile.me}} >
+  <WuButton @label="Insert" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
+</SaySolidFooter>
