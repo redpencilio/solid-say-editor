@@ -1,7 +1,7 @@
 <SaySolidContent @webId={{this.auth.webId}} @header="You have unsaved changes..."/>
 <SaySolidFooter>
     {{#if this.auth.webId}}
-     {{#unless this.isEditMode}}
+    {{#unless this.isEditMode}}
     <WuButton @label="Save" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.save}} />
     {{/unless}}
     {{/if}}
