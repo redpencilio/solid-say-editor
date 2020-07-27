@@ -1,5 +1,9 @@
 <div class="modal-dialog__footer">
- <WuButtonGroup>
+  <WuButtonGroup>
+    {{#if @me}}
     {{yield}}
+    {{else}}
+    <LoginButton/>
+    {{/if}}
   </WuButtonGroup>
 </div>
