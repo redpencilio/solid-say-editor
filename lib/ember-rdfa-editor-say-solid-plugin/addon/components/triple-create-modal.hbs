@@ -6,7 +6,7 @@
             <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{this.predicateValue}} />
             </label>
         <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
-        <select name="object" id="object" class="form-control" {{on "change" (fn this.chooseType type="target.value")}}>
+        <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
             {{#each this.objectTypes as |objectType|}}
             <option value = {{objectType}}> {{objectType}}</option>
             {{/each}}
@@ -14,8 +14,6 @@
             <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{this.objectValue}}/>
     <WuButtonGroup>
         <WuButton  @label="Save" class="button button--narrow" @onClick={{this.save}}/>
-        <WuButton  @label="Ping" class="button button--narrow" @onClick={{this.ping}}/>
-
         <WuButton @label="Cancel" class="button button--alt button--narrow" @onClick={{@onClose}}/>
     </WuButtonGroup>
   </div>
