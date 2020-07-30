@@ -3,7 +3,13 @@
       {{#each this.attributes as |pred|}}
         <br>
         <input type="checkbox" id={{pred.node.value}} {{on "click" (fn this.onSelect pred) }}>
-        <label for={{pred.node.value}} title={{if pred.description pred.node.value}}>{{if pred.label pred.label pred.node.value}}</label>
+        <label for={{pred.node.value}} title={{if pred.description pred.description pred.node.value}}>
+          <a href={{pred.node.value}}>
+          {{if pred.label pred.label pred.node.value}}
+          </a>
+          <br>
+          {{pred.target.value}}
+        </label>
       {{/each}}
     </div>
 </SaySolidContent>
