@@ -1,17 +1,17 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
     <div {{did-insert this.resetAttributes}}>
       {{#each-in this.attributes as |key pred|}}
-        <WuCheckbox @onClick={{fn this.onSelect pred}}>
-          <WuAccordion @label={{if pred.label pred.label pred.node.value}}>
-            <a href={{pred.node.value}}>Link</a>
-            <p>Values:</p>
-            <ul>
-              {{#each pred.targets as |target|}}
-                <li>{{target.value}}</li>
-              {{/each}}
-            </ul>
-          </WuAccordion>
-        </WuCheckbox>
+      <input type="checkbox" {{on "click" (fn this.onSelect pred)}}/>
+      <WuAccordion @label={{if pred.label pred.label pred.node.value}}>
+        <a href={{pred.node.value}}>Link</a>
+        <p>Values:</p>
+        <ul>
+          {{#each pred.targets as |target|}}
+            <li>{{target.value}}</li>
+          {{/each}}
+        </ul>
+      </WuAccordion>
+        
         
       {{/each-in}}
     </div>
