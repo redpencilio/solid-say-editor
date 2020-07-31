@@ -18,5 +18,5 @@
   <WuButton @label="Add triple" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{this.togglePopup}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<TripleCreateModal @onClose={{this.togglePopup}} @subject={{@subject}} @graph={{@graph}}/>
+<TripleCreateModal @onClose={{this.togglePopup}} @subject={{@subject}} @graph={{@graph}} @onCreate={{this.addPredicate}}/>
 {{/if}}
