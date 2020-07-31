@@ -3,7 +3,7 @@
     <div class="modal-dialog__footer">
         {{!-- Triple creation forms here --}}
     {{#each this.tripleForms as |tripleForm| }}
-        <TripleForm  @uid={{tripleForm}} @model={{this.componentTripleMap}}></TripleForm>
+        <TripleForm @uuid={{tripleForm}} @model={{this.componentTripleMap}}></TripleForm>
     {{/each}}
 
     <WuButtonGroup>
