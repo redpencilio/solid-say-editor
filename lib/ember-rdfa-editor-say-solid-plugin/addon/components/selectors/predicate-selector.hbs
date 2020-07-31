@@ -1,6 +1,6 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
     <div {{did-insert this.resetAttributes}}>
-      {{#each this.attributes as |pred|}}
+      {{#each-in this.attributes as |key pred|}}
         <br>
         <input type="checkbox" id={{pred.node.value}} {{on "click" (fn this.onSelect pred) }}>
         <label for={{pred.node.value}} title={{if pred.description pred.description pred.node.value}}>
@@ -8,9 +8,13 @@
           <strong>{{if pred.label pred.label pred.node.value}}</strong>
           </a>
           <br>
-          {{pred.target.value}}
+          <ul>
+          {{#each pred.targets as |target|}}
+            <li>{{target.value}}</li>
+          {{/each}}
+          </ul>
         </label>
-      {{/each}}
+      {{/each-in}}
     </div>
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}} >
