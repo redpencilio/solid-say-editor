@@ -1,17 +1,27 @@
-<ul ...attributes>
+<ul>
+    {{#if @files}}
     {{#each @files as |file|}}
 
     {{#if (exists file.children)}}
     <li>
-        <span onclick={{action "toggle"}}  class="folder">{{file.name}}</span>
-        <FileList @files={{file.children}} class="hidden" @onSelect={{@onSelect}} @selectedFile={{@selectedFile}}/>
+        <span {{on "click" (fn this.toggle file)}}  class="folder">{{file.name}}</span>
+        <div class="hidden">
+        {{#if file.isLoading}}
+            <p>Loading...</p>
+        {{else}}
+            <FileList @files={{file.children}}  @onSelect={{@onSelect}} @selectedFile={{@selectedFile}} @onOpenFolder={{@onOpenFolder}}/>
+        {{/if}}
+        </div>
+        
     </li>
     {{else}}
     <li>
-        <span {{on "click" (fn @onSelect file)}} class="file {{if (isequal file @selectedFile) "selected"}}">{{file.name}}</span>
-        
+        <span {{on "click" (fn @onSelect file)}} class="file {{if (isequal file @selectedFile) "selected"}}">{{file.name}}</span> 
     </li>
     {{/if}}
 
     {{/each}}
+    {{else}}
+        <p>This folder contains no files...</p>
+    {{/if}}
 </ul>
