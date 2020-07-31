@@ -3,6 +3,8 @@
       {{#each-in this.attributes as |key pred|}}
         <WuCheckbox @onClick={{fn this.onSelect pred}}>
           <WuAccordion @label={{if pred.label pred.label pred.node.value}}>
+            <a href={{pred.node.value}}>Link</a>
+            <p>Values:</p>
             <ul>
               {{#each pred.targets as |target|}}
                 <li>{{target.value}}</li>
