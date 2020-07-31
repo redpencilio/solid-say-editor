@@ -20,8 +20,13 @@ ul {
     display: none;
 }
 
-.selected {
+.selected.folder {
     background-color: blue;
+    color: white;  
+}
+
+.selected {
+    background-color: red;
     color: white;
 }
 

@@ -4,12 +4,12 @@
 
     {{#if (exists file.children)}}
     <li>
-        <span {{on "click" (fn this.toggle file)}}  class="folder">{{file.name}}</span>
+        <span {{on "click" (fn this.toggle file)}}  class="folder {{if (isequal file @selectedFolder) "selected"}}">{{file.name}}</span>
         <div class="hidden">
         {{#if file.isLoading}}
             <p>Loading...</p>
         {{else}}
-            <FileList @files={{file.children}}  @onSelect={{@onSelect}} @selectedFile={{@selectedFile}} @onOpenFolder={{@onOpenFolder}}/>
+            <FileList @files={{file.children}}  @onSelect={{@onSelect}} @selectedFile={{@selectedFile}} @onOpenFolder={{@onOpenFolder}} @onSelectFolder={{@onSelectFolder}}  @selectedFolder={{this.selectedFolder}}/>
         {{/if}}
         </div>
         
