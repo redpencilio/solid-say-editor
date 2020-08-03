@@ -1,9 +1,9 @@
-<WuModal @title="Add Subject to " @dialog-class="modal-dialog--wide modal-dialog--sectioned">
-    <p>{{@graph.value}}</p>
+<WuModal @title={{this.title}} @dialog-class="modal-dialog--wide modal-dialog--sectioned">
+    <p>{{this.subtitle}}</p>
     <div class="modal-dialog__footer">
 
         {{#each this.forms as |form| }}
-        <Modals::Forms::SubjectForm @uuid={{form}} @model={{get this.subjects form}}/>
+        {{component this.formComponent uuid=form model=(get this.items form)}}
         {{/each}}
             
     <WuButtonGroup>
