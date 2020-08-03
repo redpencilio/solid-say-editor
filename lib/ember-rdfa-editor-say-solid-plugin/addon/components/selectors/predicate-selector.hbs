@@ -1,18 +1,25 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
     <div {{did-insert this.resetAttributes}}>
-      {{#each this.attributes as |pred|}}
-        <br>
-        <input type="checkbox" id={{pred.node.value}} {{on "click" (fn this.onSelect pred) }}>
-        <label for={{pred.node.value}} title={{if pred.description pred.description pred.node.value}}>
-          <a href={{pred.node.value}}>
-          {{if pred.label pred.label pred.node.value}}
-          </a>
-          <br>
-          {{pred.target.value}}
-        </label>
-      {{/each}}
+      {{#each-in this.attributes as |key pred|}}
+      <Input type="checkbox" {{on "click" (fn this.onSelect pred)}}/>
+      <WuAccordion @label={{if pred.label pred.label pred.node.value}}>
+        <a href={{pred.node.value}}>Link</a>
+        <p>Values:</p>
+        <ul>
+          {{#each pred.targets as |target|}}
+            <li>{{target.value}}</li>
+          {{/each}}
+        </ul>
+      </WuAccordion>
+        
+        
+      {{/each-in}}
     </div>
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}} >
   <WuButton @label="Insert" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
+  <WuButton @label="Add triple" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{this.togglePopup}} />
 </SaySolidFooter>
+{{#if this.popup}}
+<TripleCreateModal @onClose={{this.togglePopup}} @subject={{@subject}} @graph={{@graph}} @onCreate={{this.addPredicate}}/>
+{{/if}}
