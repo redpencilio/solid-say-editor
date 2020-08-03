@@ -3,7 +3,7 @@
     <div class="modal-dialog__footer">
 
         {{#each this.forms as |form| }}
-        <SubjectForm @uuid={{form}} @model={{get this.subjects form}}></SubjectForm>
+        <Modals::Forms::SubjectForm @uuid={{form}} @model={{get this.subjects form}}/>
         {{/each}}
             
     <WuButtonGroup>

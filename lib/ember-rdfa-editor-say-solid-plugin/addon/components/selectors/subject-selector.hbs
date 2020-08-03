@@ -25,5 +25,5 @@
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<SubjectCreateModal @onClose={{this.togglePopup}} @graph={{@file}} @onCreate={{this.addSubject}}/>
+<Modals::SubjectCreateModal @onClose={{this.togglePopup}} @graph={{@file}} @onCreate={{this.addSubject}}/>
 {{/if}}
