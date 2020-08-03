@@ -1,16 +1,14 @@
 <WuModal @title="Add Subject to " @dialog-class="modal-dialog--wide modal-dialog--sectioned">
     <p>{{@graph.value}}</p>
     <div class="modal-dialog__footer">
-        <label class="form__label form__label--block u-spacer--small" for="predicate">
-            Subject name
-            <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{this.subjectValue}} />
-        </label>
-        <label class="form__label form__label--block u-spacer--small" for="object"> Object:
-            <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{this.typeValue}}/>
-        </label>
+
+        {{#each this.forms as |form| }}
+        <SubjectForm @uuid={{form}} @model={{get this.subjects form}}></SubjectForm>
+        {{/each}}
             
     <WuButtonGroup>
         <WuButton  @label="Save" class="button button--narrow" @onClick={{this.save}}/>
+        <WuButton @label="Add Subject" class="button button--narrow" @onClick={{this.addForm}}/>
         <WuButton @label="Cancel" class="button button--alt button--narrow" @onClick={{@onClose}}/>
     </WuButtonGroup>
   </div>
