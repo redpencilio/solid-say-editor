@@ -3,13 +3,16 @@
       {{#each-in this.attributes as |key pred|}}
       {{!-- <Input type="checkbox" {{on "click" (fn this.onSelect pred)}}/> --}}
       <WuAccordion @label={{if pred.label pred.label pred.node.value}}>
-        <a href={{pred.node.value}}>Link</a>
-        <p>Values:</p>
-        <ul>
-          {{#each pred.quads as |quad|}}
-            <li><Input type="checkbox"  {{on "click" (fn this.onSelect quad)}}/>{{quad.object.value}}</li>
-          {{/each}}
-        </ul>
+        <div {{on "click" this.onContentClick}}>
+          <a href={{pred.node.value}}>Link</a>
+          <p>Values:</p>
+          <ul>
+            {{#each pred.quads as |quad|}}
+              <li><Input type="checkbox"  {{on "click" (fn this.onSelect quad)}}/>{{quad.object.value}}</li>
+            {{/each}}
+          </ul>   
+        </div>
+        
       </WuAccordion>
         
         
