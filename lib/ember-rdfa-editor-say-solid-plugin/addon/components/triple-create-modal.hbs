@@ -1,0 +1,15 @@
+<WuModal @title="Add Triple to " @dialog-class="modal-dialog--wide modal-dialog--sectioned">
+    <p>{{@subject.value}}</p>
+    <div class="modal-dialog__footer">
+        {{!-- Triple creation forms here --}}
+    {{#each this.tripleForms as |tripleForm| }}
+        <TripleForm @uuid={{tripleForm}} @model={{this.componentTripleMap}}></TripleForm>
+    {{/each}}
+
+    <WuButtonGroup>
+        <WuButton @label="Add Triple" class="button button--narrow" @onClick={{this.addTripleForm}}/>
+        <WuButton  @label="Save" class="button button--narrow" @onClick={{this.save}}/>
+        <WuButton @label="Cancel" class="button button--alt button--narrow" @onClick={{@onClose}}/>
+    </WuButtonGroup>
+  </div>
+</WuModal>

@@ -1,11 +1,13 @@
 <div class="modal-dialog__content">
   <p class="u-spacer--tiny">
+    {{#if @me}}
     <ProfileHeader/>
-    {{#if @webId}}
     <strong>{{@header}}</strong>
     {{else}}
     <strong>You are not logged in</strong>
     {{/if}}
   </p>
+  {{#if @me}}
   {{yield}}
+  {{/if}}
 </div>

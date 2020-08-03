@@ -1,0 +1,5 @@
+<SaySolidContent @me={{this.profile.me}} @header="You have unsaved changes..."/>
+<SaySolidFooter @me={{this.profile.me}}>
+    <WuButton @label="Save" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.save}} />
+    <WuButton @label="Reset" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.reset}} />
+</SaySolidFooter>
