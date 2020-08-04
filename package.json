@@ -23,7 +23,7 @@
     "@ember/optional-features": "^1.3.0",
     "@glimmer/component": "^1.0.1",
     "@glimmer/tracking": "^1.0.1",
-    "@lblod/ember-rdfa-editor": "^0.39.0",
+    "@lblod/ember-rdfa-editor": "git+https://github.com/lblod/ember-rdfa-editor.git#feature/semantic-model-info",
     "@lblod/ember-rdfa-editor-date-plugin": "^0.9.0",
     "@lblod/ember-rdfa-editor-plugin-generator": "^0.3.0",
     "@lblod/ember-rdfa-editor-plugin-system-dispatcher": "^0.5.9",
