@@ -3,7 +3,7 @@
     <div class="modal-dialog__footer">
 
         {{#each this.forms as |form| }}
-        {{component this.formComponent uuid=form model=(get this.items form)}}
+        {{component this.formComponent uuid=form model=(get this.items form) onChange=this.handleChange}}
         {{/each}}
             
     <WuButtonGroup>
