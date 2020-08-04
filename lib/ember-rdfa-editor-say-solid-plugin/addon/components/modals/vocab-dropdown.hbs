@@ -1,1 +1,8 @@
-{{yield}}
+<div>
+    <label class="form__label form__label--block u-spacer--small" for="vocab"> Predicate:</label>
+    <select name="vocab" id="vocab" class="form-control" {{on "change" this.chooseVocab }}>
+        {{#each this.vocabulary as |vocabType|}}
+        <option value = {{vocabType.uri}}> {{vocabType.name}}</option>
+        {{/each}}
+    </select>
+</div>
