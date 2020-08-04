@@ -1,7 +1,7 @@
 {{#if (isequal this.currentScreen this.screens.TYPES)}}
-<Selectors::TypeSelector  @onSelect={{this.setSelectedType}} @selectedType={{this.selectedType}} @onClose={{this.onClose}} @onOpen={{this.openType}}/>
+<Selectors::TypeSelector  @onSelect={{this.setSelectedType}} @selectedType={{this.selectedType}} @onClose={{this.onClose}} @onOpen={{action (mut this.currentScreen) this.screens.SUBJECTS}}/>
 {{else if (isequal this.currentScreen this.screens.SUBJECTS)}}
-<Selectors::SubjectSelector @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedGraph}} @onClose={{this.onClose}} @onOpen={{this.openSubject}}/>
+<Selectors::SubjectSelector @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedGraph}} @onClose={{this.onClose}} @onOpen={{action (mut this.currentScreen) this.screens.PREDICATES}}/>
 {{else}}
 <Selectors::PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject.path}} @graph={{this.selectedGraph}}/>
 {{/if}}

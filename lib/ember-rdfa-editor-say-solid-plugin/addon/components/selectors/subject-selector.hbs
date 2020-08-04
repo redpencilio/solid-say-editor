@@ -20,10 +20,10 @@
 <SaySolidFooter @me={{this.profile.me}}>
     <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if @selectedSubject false true}} @onClick={{@onOpen}} />
-    <WuButton @label="Add subject" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{this.togglePopup}} />
+    <WuButton @label="Add subject" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{action (mut this.popup) true}} />
 
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::SubjectCreateModal @onClose={{this.togglePopup}} @graph={{@file}} @onCreate={{this.addSubject}}/>
+<Modals::SubjectCreateModal @onClose={{action (mut this.popup) false}} @graph={{@file}} @onCreate={{this.addSubject}}/>
 {{/if}}

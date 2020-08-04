@@ -7,7 +7,7 @@
     <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
     <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
         {{#each this.objectTypes as |objectType|}}
-        <option value = {{objectType}}> {{objectType}}</option>
+        <option value = {{objectType}} data-test="test"> {{objectType}}</option>
         {{/each}}
     </select> 
     <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@model.object}}/>

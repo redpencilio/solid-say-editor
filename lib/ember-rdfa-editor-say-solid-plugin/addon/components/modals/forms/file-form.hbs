@@ -1,6 +1,7 @@
 <div ...attributes>
     <label class="form__label form__label--block u-spacer--small" for="predicate">
             Filename
-            <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@model.file}} />
+            <Input class="textarea textarea--block u-spacer--tiny" value={{@model.file}} @key-down={{fn this.onChange "file"}}/>
+            <span>{{get this.errors "file"}}</span>
     </label>
 </div>
