@@ -21,8 +21,8 @@
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}} >
   <WuButton @label="Insert" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
-  <WuButton @label="Add triple" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{this.togglePopup}} />
+  <WuButton @label="Add triple" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{action (mut this.popup) true}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::TripleCreateModal @onClose={{this.togglePopup}} @subject={{@subject}} @graph={{@graph}} @onCreate={{this.addPredicate}}/>
+<Modals::TripleCreateModal @onClose={{action (mut this.popup) false}} @subject={{@subject}} @graph={{@graph}} @onCreate={{this.addPredicate}}/>
 {{/if}}

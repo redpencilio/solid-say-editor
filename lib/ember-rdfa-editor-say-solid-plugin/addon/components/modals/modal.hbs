@@ -2,9 +2,9 @@
     <p>{{this.subtitle}}</p>
     <div class="modal-dialog__footer">
 
-        {{#each this.forms as |form| }}
-        {{component this.formComponent uuid=form model=(get this.items form)}}
-        {{/each}}
+        {{#each-in this.forms as |id form| }}
+        {{component this.formComponent form=form onChange=this.handleChange}}
+        {{/each-in}}
             
     <WuButtonGroup>
         <WuButton @label="Save" class="button button--narrow" @onClick={{this.save}}/>
