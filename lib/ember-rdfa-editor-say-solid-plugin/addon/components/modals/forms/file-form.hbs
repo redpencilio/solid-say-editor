@@ -1,7 +1,7 @@
 <div ...attributes>
     <label class="form__label form__label--block u-spacer--small" for="predicate">
             Filename
-            <Input class="textarea textarea--block u-spacer--tiny" @value={{@model.file}} @input={{fn @onChange @uuid "file"}}/>
-            <span>{{@errors.file}}</span>
+            <Input class="textarea textarea--block u-spacer--tiny" @value={{@form.model.file}} @input={{fn @onChange @form.id "file"}}/>
+            <span>{{@form.errors.file}}</span>
     </label>
 </div>
