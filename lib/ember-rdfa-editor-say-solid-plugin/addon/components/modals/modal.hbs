@@ -7,7 +7,7 @@
         {{/each-in}}
             
     <WuButtonGroup>
-        <WuButton @label="Save" class="button button--narrow" @onClick={{this.save}}/>
+        <WuButton @label="Save" class="button button--narrow" @onClick={{this.save}} disabled={{if this.errorCount true false}}/>
         <WuButton @label="Add Item" class="button button--narrow" @onClick={{this.addForm}}/>
         <WuButton @label="Cancel" class="button button--alt button--narrow" @onClick={{@onClose}}/>
     </WuButtonGroup>
