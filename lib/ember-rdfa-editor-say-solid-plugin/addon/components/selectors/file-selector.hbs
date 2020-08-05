@@ -12,12 +12,12 @@
     <WuButton @label="Insert link" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if @selectedFile false true}} @onClick={{this.insertSelectedFile}} />
     <WuButton @label="Add file" @size="small" @isNarrow={{true}} @commandLocation="below"
-        disabled={{if this.selectedFolder false true}} @onClick={{this.togglePopup}} />
+        disabled={{if this.selectedFolder false true}} @onClick={{action (mut this.popup) true}} />
     <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if @selectedFile false true}} @onClick={{@onOpen}} />
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
     
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::FileCreateModal @onClose={{this.togglePopup}} @folder={{this.selectedFolder.path}} @onCreate={{this.addFile}}/>
+<Modals::FileCreateModal @onClose={{action (mut this.popup) false}} @folder={{this.selectedFolder.path}} @onCreate={{this.addFile}}/>
 {{/if}}
