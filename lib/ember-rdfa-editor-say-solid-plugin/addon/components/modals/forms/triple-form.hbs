@@ -1,5 +1,5 @@
 <div ...attributes>
-    <Modals::VocabDropdown @model={{@model}}></Modals::VocabDropdown>
+    <Modals::VocabDropdown @model={{@form.model}}></Modals::VocabDropdown>
     <label class="form__label form__label--block u-spacer--small" for="predicate">
         Predicate
     <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @input={{fn @onChange @form.id "predicate"}} @value={{@form.model.predicate}} />
