@@ -2,7 +2,7 @@
     <Modals::VocabDropdown @model={{@model}}></Modals::VocabDropdown>
     <label class="form__label form__label--block u-spacer--small" for="predicate">
         Predicate
-    <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@model.predicate}} />
+    <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@form.model.predicate}} />
     </label>
     <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
     <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
@@ -10,5 +10,5 @@
         <option value = {{objectType}} data-test="test"> {{objectType}}</option>
         {{/each}}
     </select> 
-    <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@model.object}}/>
+    <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@form.model.object}}/>
 </div>
