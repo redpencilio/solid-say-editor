@@ -9,7 +9,7 @@
     {{#each this.subjects as |subject|}}
 
     <li>
-        <span {{on "click" (fn @onSelect subject)}} class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{subject.name}}</span>
+        <span {{on "click" (fn @onSelect subject)}} class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{subject.value}}</span>
     </li>
 
     {{/each}}
