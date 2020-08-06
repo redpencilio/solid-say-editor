@@ -7,6 +7,7 @@ export default class SolidResourceMetadataService extends ResourceMetadataServic
 
     @service rdfaCommunicator;
     async fetch(uri){
+        console.log("fetch");
         let resource = rdflib.sym(uri);
         let metadata = await this.rdfaCommunicator.fetchResourceMetaData(resource);
         return {
