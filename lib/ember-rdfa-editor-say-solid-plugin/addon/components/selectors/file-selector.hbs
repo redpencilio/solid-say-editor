@@ -19,5 +19,5 @@
     
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::FileCreateModal @onClose={{action (mut this.popup) false}} @folder={{this.selectedFolder.path}} @onCreate={{this.addFile}}/>
+<Modals::FileCreateModal @onClose={{action (mut this.popup) false}} @folder={{this.selectedFolder.node}} @onCreate={{this.addFile}}/>
 {{/if}}

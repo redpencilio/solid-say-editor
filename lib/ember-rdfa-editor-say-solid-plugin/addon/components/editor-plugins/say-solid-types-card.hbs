@@ -3,5 +3,5 @@
 {{else if (isequal this.currentScreen this.screens.SUBJECTS)}}
 <Selectors::SubjectSelector @onSelect={{this.setSelectedSubject}} @selectedSubject={{this.selectedSubject}} @file={{this.selectedGraph}} @onClose={{this.onClose}} @onOpen={{action (mut this.currentScreen) this.screens.PREDICATES}}/>
 {{else}}
-<Selectors::PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject.path}} @graph={{this.selectedGraph}}/>
+<Selectors::PredicateSelector @onClose={{this.onClose}} @subject={{this.selectedSubject}} @graph={{this.selectedGraph}}/>
 {{/if}}
