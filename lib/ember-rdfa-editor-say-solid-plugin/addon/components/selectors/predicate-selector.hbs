@@ -1,12 +1,12 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
     <div {{did-insert this.resetAttributes}}>
-      {{#each-in this.attributes as |key pred|}}
+      {{#each-in this.attributes as |key quads|}}
       <WuAccordion @label={{key}}>
         <div {{on "click" this.onContentClick}}>
           <a href={{key}}>Link</a>
           <p>Values:</p>
           <ul>
-            {{#each pred.quads as |quad|}}
+            {{#each quads as |quad|}}
               <li><Input type="checkbox"  {{on "click" (fn this.onSelect quad)}}/>{{quad.object.value}}</li>
             {{/each}}
           </ul>   
