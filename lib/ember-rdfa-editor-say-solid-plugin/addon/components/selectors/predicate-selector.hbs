@@ -1,7 +1,7 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
     <div {{did-insert this.resetAttributes}}>
       {{#each-in this.attributes as |key quads|}}
-      <WuAccordion @label={{key}}>
+      <WuAccordion @label={{getlabel this.pred_metadata key}}>
         <div {{on "click" this.onContentClick}}>
           <a href={{key}}>Link</a>
           <p>Values:</p>
