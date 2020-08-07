@@ -7,6 +7,7 @@
         <span class="error">{{@form.errors.predicate}}</span>
     </div>
     </label>
+    <Modals::VocabDropDown @model={{@form.model}}></Modals::VocabDropDown>
     <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
     <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
         {{#each this.objectTypes as |objectType|}}

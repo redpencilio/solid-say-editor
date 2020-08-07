@@ -1,30 +1,33 @@
 <SaySolidContent @me={{this.profile.me}} @header="Select the data from {{@subject.value}} you wish to insert:">
-    <div {{did-insert this.resetAttributes}}>
+  <div {{did-insert this.resetAttributes}}>
+    <LoadingWrapper @loading={{this.isLoading}}>
+
       {{#each-in this.attributes as |key quads|}}
       <WuAccordion @label={{getlabel this.pred_metadata key}}>
         <div {{on "click" this.onContentClick}}>
           <a href={{key}}>Link</a>
 
-          <LoadingWrapper @loading={{this.isLoading}}>
           <p>Values:</p>
           <ul>
             {{#each quads as |quad|}}
-              <li><Input type="checkbox"  {{on "click" (fn this.onSelect quad)}}/>{{quad.object.value}}</li>
+            <li><Input type="checkbox" {{on "click" (fn this.onSelect quad)}} />{{quad.object.value}}</li>
             {{/each}}
-          </ul>   
-          </LoadingWrapper>
+          </ul>
         </div>
-        
+
       </WuAccordion>
-        
-        
+
+
       {{/each-in}}
-    </div>
+    </LoadingWrapper>
+  </div>
 </SaySolidContent>
-<SaySolidFooter @me={{this.profile.me}} >
+<SaySolidFooter @me={{this.profile.me}}>
   <WuButton @label="Insert" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.insert}} />
-  <WuButton @label="Add triple" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{action (mut this.popup) true}} />
+  <WuButton @label="Add triple" @size="small" @isNarrow={{true}} @commandLocation="below"
+    @onClick={{action (mut this.popup) true}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::TripleCreateModal @onClose={{action (mut this.popup) false}} @subject={{@subject}} @graph={{@graph}} @onCreate={{this.addPredicate}}/>
+<Modals::TripleCreateModal @onClose={{action (mut this.popup) false}} @subject={{@subject}} @graph={{@graph}}
+  @onCreate={{this.addPredicate}} />
 {{/if}}
