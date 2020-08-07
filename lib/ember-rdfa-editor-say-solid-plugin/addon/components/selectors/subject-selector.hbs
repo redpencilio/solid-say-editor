@@ -1,29 +1,25 @@
-
-<SaySolidContent  @me={{this.profile.me}} @header={{this.fileName}}>
+<SaySolidContent @me={{this.profile.me}} @header={{this.fileName}}>
     <div {{did-insert this.fetchSubjects}}>
-    {{#if this.isLoading}}
-    <img src="/images/spinner.svg" alt="Loading">
-    <p>Loading...</p>
-    {{else}}
-    <ul>
-    {{#each this.subjects as |subject|}}
-
-    <li>
-        <span {{on "click" (fn @onSelect subject)}} class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{getsubjectname subject.value}}</span>
-    </li>
-
-    {{/each}}
-    </ul>
-    {{/if}}
+        <LoadingWrapper @loading={{this.isLoading}}>
+            <ul>
+                {{#each this.subjects as |subject|}}
+                <li>
+                    <span {{on "click" (fn @onSelect subject)}}
+                        class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{getsubjectname subject.value}}</span>
+                </li>
+                {{/each}}
+            </ul>
+        </LoadingWrapper>
     </div>
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}}>
     <WuButton @label="Open" @size="small" @isNarrow={{true}} @commandLocation="below"
         disabled={{if @selectedSubject false true}} @onClick={{@onOpen}} />
-    <WuButton @label="Add subject" @size="small"  @isNarrow={{true}} @commandLocation="below" @onClick={{action (mut this.popup) true}} />
+    <WuButton @label="Add subject" @size="small" @isNarrow={{true}} @commandLocation="below"
+        @onClick={{action (mut this.popup) true}} />
 
     <WuButton @label="Close" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.close}} />
 </SaySolidFooter>
 {{#if this.popup}}
-<Modals::SubjectCreateModal @onClose={{action (mut this.popup) false}} @graph={{@file}} @onCreate={{this.addSubject}}/>
+<Modals::SubjectCreateModal @onClose={{action (mut this.popup) false}} @graph={{@file}} @onCreate={{this.addSubject}} />
 {{/if}}
