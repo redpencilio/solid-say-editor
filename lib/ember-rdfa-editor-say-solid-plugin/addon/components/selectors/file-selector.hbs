@@ -1,10 +1,8 @@
 <SaySolidContent @me={{this.profile.me}} @header="Your Solid Files">
     <div {{did-insert this.fetchFiles}}>
-    {{#if this.root.isLoading}}
-    <p>Loading...</p>
-    {{else}}
-    <FileList @files={{this.root.children}} @onSelect={{@onSelect}} @selectedFile={{@selectedFile}} @onOpenFolder={{this.onOpenFolder}} @onSelectFolder={{this.setSelectedFolder}} @selectedFolder={{this.selectedFolder}}/>
-    {{/if}}
+    <LoadingWrapper @loading={{this.root.isLoading}}>
+        <FileList @files={{this.root.children}} @onSelect={{@onSelect}} @selectedFile={{@selectedFile}} @onOpenFolder={{this.onOpenFolder}} @onSelectFolder={{this.setSelectedFolder}} @selectedFolder={{this.selectedFolder}}/>
+    </LoadingWrapper>
     </div>
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}}>
