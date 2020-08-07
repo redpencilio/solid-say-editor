@@ -4,12 +4,15 @@
       <WuAccordion @label={{getlabel this.pred_metadata key}}>
         <div {{on "click" this.onContentClick}}>
           <a href={{key}}>Link</a>
+
+          <LoadingWrapper @loading={{this.isLoading}}>
           <p>Values:</p>
           <ul>
             {{#each quads as |quad|}}
               <li><Input type="checkbox"  {{on "click" (fn this.onSelect quad)}}/>{{quad.object.value}}</li>
             {{/each}}
           </ul>   
+          </LoadingWrapper>
         </div>
         
       </WuAccordion>
