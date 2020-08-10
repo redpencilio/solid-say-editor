@@ -1,5 +1,5 @@
 <div ...attributes>
-    <Modals::VocabDropdown @model={{@form.model}}></Modals::VocabDropdown>
+    <Modals::VocabDropdown  @key="predVocab" @model={{@form.model}}></Modals::VocabDropdown>
     <label class="form__label form__label--block u-spacer--small" for="predicate">
         Predicate
     <div class="input-wrapper">
@@ -7,7 +7,7 @@
         <span class="error">{{@form.errors.predicate}}</span>
     </div>
     </label>
-    <Modals::VocabDropDown @model={{@form.model}}></Modals::VocabDropDown>
+    <Modals::VocabDropdown @key="objVocab" @model={{@form.model}}></Modals::VocabDropdown>
     <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
     <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
         {{#each this.objectTypes as |objectType|}}

@@ -1,14 +1,20 @@
 <SaySolidContent @me={{this.profile.me}} @header={{this.fileName}}>
     <div {{did-insert this.fetchSubjects}}>
         <LoadingWrapper @loading={{this.isLoading}}>
+            {{#if this.subjects}}
             <ul>
+                
                 {{#each this.subjects as |subject|}}
                 <li>
                     <span {{on "click" (fn @onSelect subject)}}
                         class="subject {{if (isequal subject @selectedSubject) "selected"}}">{{getsubjectname subject.value}}</span>
                 </li>
                 {{/each}}
+
             </ul>
+            {{else}}
+            <p>No subjects found...</p>
+            {{/if}}
         </LoadingWrapper>
     </div>
 </SaySolidContent>
