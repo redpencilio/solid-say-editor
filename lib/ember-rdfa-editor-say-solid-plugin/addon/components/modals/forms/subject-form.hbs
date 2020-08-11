@@ -1,0 +1,13 @@
+<div ...attributes>
+    <label class="form__label form__label--block u-spacer--small" for="subject">
+        Subject name
+        <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@form.model.subject}}  @input={{fn @onChange @form.id "subject"}}/>
+        <span class="error">{{@form.errors.subject}}</span>
+    </label>
+    <br>
+    <Modals::VocabDropdown @model={{@form.model}} @key="typeVocab"></Modals::VocabDropdown>
+    <label class="form__label form__label--block u-spacer--small" for="type"> Type:
+        <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @value={{@form.model.type}}/>
+
+    </label>
+</div>

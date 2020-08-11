@@ -1,0 +1,9 @@
+<div ...attributes>
+    <label class="form__label form__label--block u-spacer--small" for="predicate">
+            Filename
+            <div class="input-wrapper">
+                <Input class="textarea textarea--block" @value={{@form.model.file}} @input={{fn @onChange @form.id "file"}}/>
+                <span class="error">{{@form.errors.file}}</span>
+            </div>
+    </label>
+</div>
