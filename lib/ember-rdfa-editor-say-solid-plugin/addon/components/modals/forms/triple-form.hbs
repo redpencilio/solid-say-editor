@@ -1,0 +1,20 @@
+<div ...attributes>
+    <Modals::VocabDropdown  @key="predVocab" @model={{@form.model}}></Modals::VocabDropdown>
+    <label class="form__label form__label--block u-spacer--small" for="predicate">
+        Predicate
+    <div class="input-wrapper">
+        <Input class="textarea textarea--block" @input={{fn @onChange @form.id "predicate"}} @value={{@form.model.predicate}} />
+        <span class="error">{{@form.errors.predicate}}</span>
+    </div>
+    </label>
+    <Modals::VocabDropdown @key="objVocab" @model={{@form.model}}></Modals::VocabDropdown>
+    <label class="form__label form__label--block u-spacer--small" for="object"> Object:</label>
+    <select name="object" id="object" class="form-control" {{on "change" this.chooseType }}>
+        {{#each this.objectTypes as |objectType|}}
+        <option value = {{objectType}} data-test="test"> {{objectType}}</option>
+        {{/each}}
+    </select> 
+    <Textarea class="textarea textarea--block u-spacer--tiny" rows="1" @input={{fn @onChange @form.id "object"}} @value={{@form.model.object}}/>
+    <span class="error">{{@form.errors.object}}</span>
+
+</div>

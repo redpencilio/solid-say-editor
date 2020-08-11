@@ -1,24 +1,21 @@
-
 <SaySolidContent @me={{this.profile.me}} @header="Type Overview">
     <div {{did-insert this.fetchTypes}}>
-    {{#if this.isLoading}}
-    <img src="/images/spinner.svg" alt="Loading">
-    <p>Loading...</p>
-    {{else}}
-    <ul>
-    {{#if this.types}}
-    {{#each this.types as |type|}}
+        <LoadingWrapper @loading={{this.isLoading}}>
+            <ul>
+                {{#if this.types}}
+                {{#each this.types as |type|}}
 
-    <li>
-        <span {{on "click" (fn @onSelect type)}} class="type {{if (isequal type @selectedType) "selected"}}">{{type.value}}</span>
-    </li>
+                <li>
+                    <span {{on "click" (fn @onSelect type)}}
+                        class="type {{if (isequal type @selectedType) "selected"}}">{{type.value}}</span>
+                </li>
 
-    {{/each}}
-    {{else}}
-    <p>No Types Found</p>
-    {{/if}}
-    </ul>
-    {{/if}}
+                {{/each}}
+                {{else}}
+                <p>No Types Found</p>
+                {{/if}}
+            </ul>
+        </LoadingWrapper>
     </div>
 </SaySolidContent>
 <SaySolidFooter @me={{this.profile.me}}>

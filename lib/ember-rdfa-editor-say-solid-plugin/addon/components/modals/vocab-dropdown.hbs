@@ -1,0 +1,9 @@
+<div>
+    <label class="form__label form__label--block u-spacer--small" for="vocab"> Vocab:</label>
+    <input name="predicate" list="predicate-list" id="vocab" class="form-control" value="{{get (get this.vocabulary "0") "uri"}}" {{on "change" this.chooseVocab }} />
+    <datalist id="predicate-list">
+        {{#each this.vocabulary as |vocabType|}}
+        <option value={{vocabType.prefix}}> {{vocabType.prefix}}</option>
+        {{/each}}
+    </datalist>
+</div>

@@ -2,5 +2,17 @@
   {{rdfa/rdfa-editor class="rdfa-editor"
     profile="all"
     value=model
-    rdfaEditorInit=(action "handleRdfaEditorInit")}}
+    rdfaEditorInit=(action "handleRdfaEditorInit")
+    editorOptions=(hash
+    showToggleRdfaAnnotations="true"
+    showInsertButton="true"
+    showRdfa="true"
+    showRdfaHighlight="true"
+    showRdfaHover="true"
+  )
+  toolbarOptions=(hash
+    showTextStyleButtons="true"
+    showListButtons="true"
+    showIndentButtons="true"
+  )}}
 {{/editor-container}}

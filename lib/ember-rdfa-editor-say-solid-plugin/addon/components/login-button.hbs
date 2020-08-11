@@ -1,1 +1,8 @@
-<WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} />
+<label class="form__label form__label--block u-spacer--small" for="provider"> Provider:</label>
+    <input name="provider" list="provider-list" id="provider" class="form-control" {{on "change" this.chooseProvider }} />
+    <datalist id="provider-list">
+        {{#each this.providers as |provider|}}
+        <option value={{provider}}> {{provider}}</option>
+        {{/each}}
+    </datalist>
+<WuButton @label="Login" @size="small" @isNarrow={{true}} @commandLocation="below" @onClick={{this.login}} disabled={{if this.selectedProvider false true}}/>
