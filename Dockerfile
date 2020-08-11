@@ -5,6 +5,7 @@ LABEL maintainer="info@redpencil.io"
 WORKDIR /app
 COPY package.json .
 RUN npm install
+RUN cd /app/lib/ember-rdfa-editor-say-solid-plugin; npm install
 COPY . .
 RUN ember build -prod
 
