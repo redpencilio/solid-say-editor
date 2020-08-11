@@ -4,6 +4,8 @@ LABEL maintainer="info@redpencil.io"
 
 WORKDIR /app
 COPY package.json .
+RUN mkdir -p /app/lib/ember-rdfa-editor-say-solid-plugin
+COPY ./lib/ember-rdfa-editor-say-solid-plugin/package.json /app/lib/ember-rdfa-editor-say-solid-plugin/
 RUN npm install
 RUN cd /app/lib/ember-rdfa-editor-say-solid-plugin; npm install
 COPY . .
