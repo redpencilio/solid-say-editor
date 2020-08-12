@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: PredicateSelectorComponent</title>
+    <title>JSDoc: Class: RdfaEditorSaySolidPlugin</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: PredicateSelectorComponent</h1>
+    <h1 class="page-title">Class: RdfaEditorSaySolidPlugin</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>PredicateSelectorComponent<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>RdfaEditorSaySolidPlugin<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="PredicateSelectorComponent"><span class="type-signature"></span>new PredicateSelectorComponent<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RdfaEditorSaySolidPlugin"><span class="type-signature"></span>new RdfaEditorSaySolidPlugin<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    Component responsible for rendering a list of selectable predicates and for fetching predicates from a store for a specific subject
+    Entry point for SaySolid
 </div>
 
 
@@ -90,13 +90,13 @@
 
         <tr>
             
-                <td class="name"><code>storeCommunicator</code></td>
+                <td class="name"><code>solidHandlers</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Ember.Service</span>
+<span class="param-type">Array.&lt;BlockHandler></span>
 
 
             
@@ -106,99 +106,7 @@
 
             
 
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>profile</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Ember.Service</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>popup</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>selectedQuads</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Set</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>isLoading</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
+            <td class="description last">Contains the handlers which will be notified for every events from the editor dispatcher.</td>
         </tr>
 
     
@@ -237,7 +145,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_selectors_predicate-selector.js.html">components/selectors/predicate-selector.js</a>, <a href="components_selectors_predicate-selector.js.html#line10">line 10</a>
+        <a href="services_rdfa-editor-say-solid-plugin.js.html">services/rdfa-editor-say-solid-plugin.js</a>, <a href="services_rdfa-editor-say-solid-plugin.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -277,7 +185,7 @@
 
 
     <ul>
-        <li>Ember.Component</li>
+        <li>Ember.Service</li>
     </ul>
 
 
@@ -304,7 +212,7 @@
     
 
     
-    <h4 class="name" id=".insert"><span class="type-signature">(static) </span>insert<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".execute"><span class="type-signature">(static) </span>execute<span class="signature">(hrId, rdfaBlocks, hintsRegistry, editor)</span><span class="type-signature"></span></h4>
     
 
     
@@ -312,7 +220,7 @@
 
 
 <div class="description">
-    Generates and inserts rdfa-tags for the selected triples and their metadata for the given subject
+    Handles the incoming events from the editor dispatcher.  Responsible for generating hint cards.
 </div>
 
 
@@ -323,180 +231,122 @@
 
 
 
-
-
-
-
-<dl class="details">
-
+    <h5>Parameters:</h5>
     
 
-    
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_selectors_predicate-selector.js.html">components/selectors/predicate-selector.js</a>, <a href="components_selectors_predicate-selector.js.html#line70">line 70</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <th>Type</th>
 
         
-            
-
-    
-
-    
-    <h4 class="name" id=".insert"><span class="type-signature">(static) </span>insert<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Method that is called when a triple has been created, this will add the triple to predicate-selection-listFetches metadata of the predicate of the triple if necessary
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_selectors_predicate-selector.js.html">components/selectors/predicate-selector.js</a>, <a href="components_selectors_predicate-selector.js.html#line94">line 94</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>hrId</code></td>
             
 
-    
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Unique identifier of the state in the HintsRegistry.  Allows theHintsRegistry to update absolute selected regions based on what a user has entered in between.</td>
+        </tr>
 
     
-    <h4 class="name" id=".resetAttributes"><span class="type-signature">(static) </span>resetAttributes<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+
+        <tr>
+            
+                <td class="name"><code>rdfaBlocks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Set of logical blobs of content which may have changed.  Each blob iseither has a different semantic meaning, or is logically separated (eg: a separate list item).</td>
+        </tr>
 
     
 
+        <tr>
+            
+                <td class="name"><code>hintsRegistry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
 
 
-<div class="description">
-    Fetches a list of triples from the store for the given subject, also fetches metadata for the predicates of the triplesTriples are grouped per predicate
-</div>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Keeps track of where hints are positioned in the editor.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
 
 
+            
+            </td>
 
+            
 
+            
 
+            <td class="description last">Your public interface through which you can alter the document.</td>
+        </tr>
 
-
+    
+    </tbody>
+</table>
 
 
 
@@ -532,7 +382,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_selectors_predicate-selector.js.html">components/selectors/predicate-selector.js</a>, <a href="components_selectors_predicate-selector.js.html#line39">line 39</a>
+        <a href="services_rdfa-editor-say-solid-plugin.js.html">services/rdfa-editor-say-solid-plugin.js</a>, <a href="services_rdfa-editor-say-solid-plugin.js.html#line37">line 37</a>
     </li></ul></dd>
     
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/editor-plugins/say-solid-files-card.js</title>
+    <title>JSDoc: Class: LoginBlockHandler</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,63 +17,148 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/editor-plugins/say-solid-files-card.js</h1>
+    <h1 class="page-title">Class: LoginBlockHandler</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { action } from '@ember/object';
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import FilesBlockHandler from '../../utils/block-handlers/files-block-handler';
-
-/**
- * Card responsible for the fetching of subjects and predicates of specific files
- * This card consists of three different screens: a file-selection screen, a subject-selection screen and a predicate-selection screen
- *
- * @class SaySolidFilesCard
- * @extends Ember.Component
- * 
- * @property {File} selectedFile
- * @property {NamedNode} selectedGraph
- * @property {NamedNode} selectedSubject
- */
-export default class SaySolidFilesCard extends Component {
-    // file selected on the file-tree screen
-    @tracked selectedFile = null;
-    @tracked selectedGraph = null;
-
-    // subject selected on the subject-selection screen
-    @tracked selectedSubject = null;
+        <h2><span class="attribs"><span class="type-signature"></span></span>LoginBlockHandler<span class="signature">()</span><span class="type-signature"></span></h2>
+        
     
-    // screens that are shown on this card
-    screens = {
-        FILES: "files",
-        SUBJECTS: "subjects",
-        PREDICATES: "predicates"
-    };
+</header>
 
-    // current shown screen
-    @tracked currentScreen = this.screens.FILES;
+<article>
+    <div class="container-overview">
+    
+        
 
-    @action
-    async onClose(rdfa) {
-        FilesBlockHandler.handleClose(this.args.info, rdfa);
-    }
+    
 
-    @action
-    setSelectedFile(file){
-        this.selectedFile = file;
-        this.selectedGraph = file.node;
-    }
-}
-</code></pre>
-        </article>
-    </section>
+    
+    <h4 class="name" id="LoginBlockHandler"><span class="type-signature"></span>new LoginBlockHandler<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handler class responsible for handling events coming from the dispatcher and for sending updates to the rdflib-store when data is edited in the editor
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="utils_block-handlers_login-block-handler.js.html">utils/block-handlers/login-block-handler.js</a>, <a href="utils_block-handlers_login-block-handler.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="TextBlockHandler.html">TextBlockHandler</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
