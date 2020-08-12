@@ -68,5 +68,8 @@
     "paths": [
       "lib/ember-rdfa-editor-say-solid-plugin"
     ]
+  },
+  "dependencies": {
+    "@docfy/ember": "^0.1.0"
   }
 }
