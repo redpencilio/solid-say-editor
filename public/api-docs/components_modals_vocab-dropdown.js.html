@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/modals/vocab-dropdown.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/modals/vocab-dropdown.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Component from '@glimmer/component';
+import * as NAMESPACE from "solid-addon/utils/namespaces"
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+/**
+ * 
+ * Modal component responsible for the ability to create new quads and adding them to your Solid Pod.
+ *
+ * @class ModalsVocabDropdownComponent
+ * @extends Ember.Component
+ * 
+ * @property {List} vocabulary
+ * @property {List} vocabList
+ * @property {Object} prefixUriMap 
+ */
+export default class ModalsVocabDropdownComponent extends Component {
+
+    @tracked
+    vocabulary = [] ;
+
+    @tracked 
+    vocabList = []; 
+
+    prefixUriMap = {}; 
+
+    constructor() {
+        super(...arguments);
+
+        this.vocabulary = [
+            this.createPair(NAMESPACE.FOAF(), "foaf:"), 
+            this.createPair(NAMESPACE.RDF(), "rdf:"), 
+            this.createPair(NAMESPACE.SHACL(), "shacl:"), 
+            this.createPair(NAMESPACE.XSD(), "xsd:"), 
+            this.createPair(NAMESPACE.SOLID(), "solid:"), 
+            this.createPair(NAMESPACE.VCARD(), "vcard:"), 
+            this.createPair(NAMESPACE.LDP(), "ldp:"), 
+            this.createPair(NAMESPACE.DCT(), "dct:"), 
+            this.createPair(NAMESPACE.TRACKER(), "tracker:"), 
+            this.createPair(NAMESPACE.SKOS(), "skos:"), 
+            this.createPair(NAMESPACE.FORM(), "form:")
+        ];
+    
+        this.vocabList = this.vocabulary.map( pair =>pair.prefix); 
+        this.vocabList.sort(); 
+        
+        this.vocabulary.forEach(pair => this.prefixUriMap[pair.prefix] = pair.uri); 
+        this.args.model[this.args.key] = this.vocabulary[0].uri; 
+    }
+    
+    createPair(uri, prefix){
+        uri = uri.value;
+        return {prefix, uri}; 
+    }
+
+    @action
+    chooseVocab() {
+        let input = event.target.value; 
+        let chosenVocab = (this.prefixUriMap[input])? this.prefixUriMap[input]: input ;
+        
+        this.args.model[this.args.key] =  chosenVocab; 
+    }
+
+} 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="EditInEditorBlockHandler.html">EditInEditorBlockHandler</a></li><li><a href="FetchBlockHandler.html">FetchBlockHandler</a></li><li><a href="File.html">File</a></li><li><a href="FileCreateModalComponent.html">FileCreateModalComponent</a></li><li><a href="FileListComponent.html">FileListComponent</a></li><li><a href="FilesBlockHandler.html">FilesBlockHandler</a></li><li><a href="FileSelectorComponent.html">FileSelectorComponent</a></li><li><a href="Folder.html">Folder</a></li><li><a href="Form.html">Form</a></li><li><a href="LoginBlockHandler.html">LoginBlockHandler</a></li><li><a href="LoginButtonComponent.html">LoginButtonComponent</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="ModalsVocabDropdownComponent.html">ModalsVocabDropdownComponent</a></li><li><a href="ModelSerializer.html">ModelSerializer</a></li><li><a href="ModelStoreCommunicatorService.html">ModelStoreCommunicatorService</a></li><li><a href="PredicateSelectorComponent.html">PredicateSelectorComponent</a></li><li><a href="ProfileHeaderComponent.html">ProfileHeaderComponent</a></li><li><a href="ProfileService.html">ProfileService</a></li><li><a href="RdfaEditorSaySolidPlugin.html">RdfaEditorSaySolidPlugin</a></li><li><a href="SaveResetBlockHandler.html">SaveResetBlockHandler</a></li><li><a href="SaySolidFetchCard.html">SaySolidFetchCard</a></li><li><a href="SaySolidFilesCard.html">SaySolidFilesCard</a></li><li><a href="SaySolidLoginCard.html">SaySolidLoginCard</a></li><li><a href="SaySolidSaveResetCard.html">SaySolidSaveResetCard</a></li><li><a href="SaySolidTypesCard.html">SaySolidTypesCard</a></li><li><a href="SolidBlockHandler.html">SolidBlockHandler</a></li><li><a href="SubjectCreateModalComponent.html">SubjectCreateModalComponent</a></li><li><a href="SubjectSelectorComponent.html">SubjectSelectorComponent</a></li><li><a href="TextBlockHandler.html">TextBlockHandler</a></li><li><a href="TripleCreateModalComponent.html">TripleCreateModalComponent</a></li><li><a href="TripleFormComponent.html">TripleFormComponent</a></li><li><a href="TypesBlockHandler.html">TypesBlockHandler</a></li><li><a href="TypeSelectorComponent.html">TypeSelectorComponent</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Wed Aug 12 2020 16:03:25 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
