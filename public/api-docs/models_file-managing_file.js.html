@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SaySolidTypesCard</title>
+    <title>JSDoc: Source: models/file-managing/file.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,269 +17,65 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SaySolidTypesCard</h1>
+    <h1 class="page-title">Source: models/file-managing/file.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>SaySolidTypesCard<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-
-    
-    <h4 class="name" id="SaySolidTypesCard"><span class="type-signature"></span>new SaySolidTypesCard<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Card responsible for the fetching of subjects and predicates of specific typesThis card consists of three different screens: a type-selection screen, a subject-selection screen and a predicate-selection screen
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>selectedType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">NamedNode</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>selectedGraph</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">NamedNode</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>selectedSubject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">NamedNode</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>storeCommunicator</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Ember.Service</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_editor-plugins_say-solid-types-card.js.html">components/editor-plugins/say-solid-types-card.js</a>, <a href="components_editor-plugins_say-solid-types-card.js.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li>Ember.Component</li>
-    </ul>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { tracked } from '@glimmer/tracking';
+
+
+
+
+export default class File {
+
+    @tracked node;
+
+
+    /**
+     * A model to emulate file structure. 
+     * @constructor File
+     * @property {NamedNode} node 
+     * @param {NamedNode} node  NamedNode containing the value of the file path.
+     */
+    constructor(node) {
+
+        this.node = node;
+    }
+
+    /**
+     * 
+     * Returns the type of the file. 
+     * @public
+     * @readonly
+     * @instance
+     * @memberof File
+     * @returns {String} "file" string to state the type
+     */
+    get type() {
+        return "file";
+    }
+
+    /**
+     * Returns the URI path of the file
+     * @public 
+     * @readonly
+     * @instance
+     * @memberof File
+     * @returns {String} URI path of the file 
+     */
+    get name() {
+        let patharr = this.node.value.split("/");
+        return patharr[patharr.length - 1] || patharr[patharr.length - 2];
+    }
+
+}</code></pre>
+        </article>
+    </section>
 
 
 
