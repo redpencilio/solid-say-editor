@@ -10,5 +10,7 @@ export default class Router extends EmberRouter {
 
 Router.map(function() {
   this.route('editor/new-document');
-  docsRoute(this, function(){ })
+  docsRoute(this, function(){ 
+    this.route('user-guide')
+  })
 });
