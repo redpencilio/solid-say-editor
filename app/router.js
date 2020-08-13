@@ -1,6 +1,5 @@
-import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
 import AddonDocsRouter, { docsRoute } from 'ember-cli-addon-docs/router';
+import config from './config/environment';
 
 
 export default class Router extends AddonDocsRouter {
@@ -8,10 +7,10 @@ export default class Router extends AddonDocsRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('editor/new-document');
-  docsRoute(this, function(){ 
+  docsRoute(this, function () {
     this.route('user-guide'),
-    this.route('command-reference')
+      this.route('command-reference')
   })
 });

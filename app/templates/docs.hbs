@@ -1,13 +1,12 @@
-<DocsHeader/>
-
+<DocsHeader />
 {{#docs-viewer as |viewer|}}
-  {{#viewer.nav as |nav|}}
-    {{nav.section "Introduction"}}
-    {{nav.item "User Guide" "docs.user-guide"}}
-    {{nav.item "Command reference" "docs.command-reference"}}
-  {{/viewer.nav}}
+{{#viewer.nav as |nav|}}
+{{nav.section "Introduction"}}
+{{nav.item "User Guide" "docs.user-guide"}}
+{{nav.item "Command reference" "docs.command-reference"}}
+{{/viewer.nav}}
 
-  {{#viewer.main}}
-    {{outlet}}
-  {{/viewer.main}}
+{{#viewer.main}}
+{{outlet}}
+{{/viewer.main}}
 {{/docs-viewer}}
