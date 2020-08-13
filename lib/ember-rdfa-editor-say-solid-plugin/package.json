@@ -20,7 +20,8 @@
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each"
+    "test:ember-compatibility": "ember try:each",
+    "docs": "jsdoc -r lib/ember-rdfa-editor-say-solid-plugin/addon -d public/api-docs/"
   },
   "dependencies": {
     "@glimmer/tracking": "^1.0.1",
