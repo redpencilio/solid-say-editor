@@ -1,6 +1,7 @@
 import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
-import { addDocfyRoutes } from '@docfy/ember';
+import AddonDocsRouter, { docsRoute } from 'ember-cli-addon-docs/router';
+
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -9,5 +10,5 @@ export default class Router extends EmberRouter {
 
 Router.map(function() {
   this.route('editor/new-document');
-  addDocfyRoutes(this);
+  docsRoute(this, function(){ })
 });
