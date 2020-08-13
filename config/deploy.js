@@ -2,9 +2,26 @@
 'use strict';
 
 module.exports = function(deployTarget) {
+  process.env.GIT_DISCOVERY_ACROSS_FILESYSTEM=1;
   let ENV = {
-    build: {}
-    // include other plugin configuration that applies to all deploy targets here
+    build: {
+      environment: 'production'
+    },
+    'ssh-index': { // copy and deploy index.html
+      username: 'root',
+      host: 'say-solid.s.redpencil.io',
+      port: 22,
+      remoteDir: '/data/app-say-solid-dev/config/frontend/',
+      allowOverwrite: true,
+      agent: process.env.SSH_AUTH_SOCK
+    },
+    'rsync': { // copy assets
+      host: 'root@say-solid.s.redpencil.io',
+      port: 22,
+      dest: '/data/app-say-solid-dev/config/frontend/',
+      delete: false,
+      arg:['--verbose']
+    }
   };
 
   if (deployTarget === 'development') {
