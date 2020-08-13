@@ -18,7 +18,7 @@
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
-    "docs": "jsdoc -r lib/ember-rdfa-editor-say-solid-plugin/addon -d public/api-docs/"
+    "docs": "jsdoc -r lib/ember-rdfa-editor-say-solid-plugin/addon lib/ember-rdfa-editor-say-solid-plugin/README.md -d public/api-docs/"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
