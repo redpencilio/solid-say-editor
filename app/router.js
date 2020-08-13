@@ -1,13 +1,16 @@
-import EmberRouter from '@ember/routing/router';
+import AddonDocsRouter, { docsRoute } from 'ember-cli-addon-docs/router';
 import config from './config/environment';
-import { addDocfyRoutes } from '@docfy/ember';
 
-export default class Router extends EmberRouter {
+
+export default class Router extends AddonDocsRouter {
   location = config.locationType;
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {
   this.route('editor/new-document');
-  addDocfyRoutes(this);
+  docsRoute(this, function () {
+    this.route('user-guide'),
+      this.route('command-reference')
+  })
 });
