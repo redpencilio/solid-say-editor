@@ -4,6 +4,7 @@
 /dist/
 /tmp/
 /out/
+/tests/dummy/public/api-docs/
 
 # dependencies
 /bower_components/
