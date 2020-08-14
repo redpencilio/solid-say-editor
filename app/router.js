@@ -1,6 +1,5 @@
 import config from './config/environment';
-import AddonDocsRouter, { docsRoute } from 'ember-cli-addon-docs/router';
-import EmberRouter from "@ember/touting/router";
+import EmberRouter from "@ember/routing/router";
 
 export default class Router extends EmberRouter {
   location = config.locationType;
