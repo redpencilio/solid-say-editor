@@ -6,9 +6,6 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     sassOptions: {
       extension: 'scss'
-    },
-    'ember-cli-addon-docs': {
-      documentingAddonAt: 'lib/ember-rdfa-editor-say-solid-plugin'
     }
     // Add options here
   });
